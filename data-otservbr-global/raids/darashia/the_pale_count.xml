@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<raid>
+<areaspawn delay="1000" fromx="32141" fromy="32040" fromz="0" tox="32207" toy="32129" toz="0">
+		<monster name="The Pale Count" amount="1" />
+	</areaspawn>
+	
+</raid>

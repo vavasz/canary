@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<raid>
+	<announce delay="1000" type="event" message="Bonebeasts are rattling down in the Ankrahmun Dipthrah tombs." />
+	<announce delay="20000" type="event" message="Bonebeasts roaming around in the Ankrahmun Dipthrah tombs." />
+	<areaspawn delay="1000" fromx="32141" fromy="32040" fromz="0" tox="32207" toy="32129" toz="0">
+		<monster name="Bonebeast" amount="15" />
+	</areaspawn>
+</raid>

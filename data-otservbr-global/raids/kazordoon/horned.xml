@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<raid>
+	<announce delay="1000" type="event" message="Beware of The horned Fox!" />
+	<areaspawn delay="1000" fromx="32141" fromy="32040" fromz="0" tox="32207" toy="32129" toz="0">
+		<monster name="minotaur guard" amount="50" />
+		<monster name="minotaur archer" amount="50" />
+		<monster name="minotaur mage" amount="50" />
+		<monster name="minotaur the Horned Fox" amount="1" />
+	</areaspawn>
+</raid>

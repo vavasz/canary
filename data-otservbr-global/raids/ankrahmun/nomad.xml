@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<raid>
+	<announce delay="1000" type="event" message="Nomad scouts have been sighted close to the gates to Ankrahmun." />
+	<announce delay="35000" type="event" message="The desert nomads are launching a full scale attack on Ankrahmun.
+		Some might even have slipped through the defences!" />
+	<areaspawn delay="1000" fromx="32141" fromy="32040" fromz="0" tox="32207" toy="32129" toz="0">
+		<monster name="Nomad" amount="160" />
+	</areaspawn>
+	<areaspawn delay="1000" fromx="32141" fromy="32040" fromz="0" tox="32207" toy="32129" toz="0">
+		<monster name="Nomad" amount="160" />
+	</areaspawn>
+</raid>
