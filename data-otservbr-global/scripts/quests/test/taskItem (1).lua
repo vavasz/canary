@@ -85,7 +85,7 @@ local c = {
             fromPos = Position(91, 490, 14), -- topo esquerdo da area
             toPos = Position(142, 680, 14), -- inferior direito da area, pega TODOS SQMS POSSIVEIS DO PLAYER ESTAR}
             message = "Que comecem os jogos",
-            monstersToKill = {"instanced swamp overloading", "instanced nature overloading"},
+            monstersToKill = {"instanced swamp overloading"},
             waitBossRoom = Position(119, 617, 14),
             teleportToBossWaitRoom = Position(107, 589, 14),
         },
@@ -97,30 +97,30 @@ local c = {
             fromPos = Position(146, 491, 14), -- topo esquerdo da area
             toPos = Position(189, 680, 14), -- inferior direito da area, pega TODOS SQMS POSSIVEIS DO PLAYER ESTAR}
             message = "Que comecem os jogos",
-            monstersToKill = {"instanced storm overloading", "instanced tempest overloading"},
+            monstersToKill = {"instanced storm overloading"},
             waitBossRoom = Position(169, 617, 14),
             teleportToBossWaitRoom = Position(163, 605, 14),
         },
         {   
             taskExhaust = 250004,
-            teleportPosition = Position(222, 501, 14),
-            taskPosition = Position(10265, 10226, 7), -- pra onde vai quando pisa no tp
+            teleportPosition = Position(227, 439, 14),
+            taskPosition = Position(222, 501, 14), -- pra onde vai quando pisa no tp
             fromPos = Position(194, 492, 14), -- topo esquerdo da area
             toPos = Position(234, 680, 14), -- inferior direito da area, pega TODOS SQMS POSSIVEIS DO PLAYER ESTAR}
             message = "Que comecem os jogos",
-            monstersToKill = {"instanced ice overloading", "instanced avalanche overloading"},
+            monstersToKill = {"instanced ice overloading"},
             waitBossRoom = Position(212, 617, 14),
             teleportToBossWaitRoom = Position(210, 602, 14),
         },
 
         {   
             taskExhaust = 250005,
-            teleportPosition = Position(),
+            teleportPosition = Position(238, 449, 14),
             taskPosition = Position(273, 500, 14), -- pra onde vai quando pisa no tp
             fromPos = Position(238, 491, 14), -- topo esquerdo da area
             toPos = Position(288, 681, 14), -- inferior direito da area, pega TODOS SQMS POSSIVEIS DO PLAYER ESTAR}
             message = "Que comecem os jogos",
-            monstersToKill = {"instanced fire overloading", "instanced lava overloading"},
+            monstersToKill = {"instanced fire overloading"},
             waitBossRoom = Position(261, 616, 14),
             teleportToBossWaitRoom = Position(262, 601, 14),
         },
@@ -129,7 +129,10 @@ local c = {
 ------------------------------------------------------------------------------------------------------------
     chests = {
             [62001] = {itemId = 49700, count = 1, actionId = 62001},
-            },
+            [62002] = {itemId = 49700, count = 1, actionId = 62002},
+            [62003] = {itemId = 49700, count = 1, actionId = 62003},
+            [62004] = {itemId = 49700, count = 1, actionId = 62004},
+        },
 }
 -------------------------- FIM - CONFIGURACOES DAS TASKS ------------------------------
 
@@ -195,7 +198,7 @@ local taskTp = MoveEvent()
         for _, eachTask in pairs(c.tasks) do
             if player:getPosition() == eachTask.teleportPosition then
                 if player:getStorageValue(c.SExhaust) >= mtime and player:getStorageValue(eachTask.taskExhaust) <= mtime then
-                    player:sendCancelMessage("Voce deve esperar "..getCorrectTime(player:getStorageValue(c.SExhaust) - mtime).." at� poder escolher novamente.")
+                    player:sendCancelMessage("Voce deve esperar "..getCorrectTime(player:getStorageValue(c.SExhaust) - mtime).." ate poder realizar outra task.")
                     player:teleportTo(fromPosition, true)
                 elseif player:getStorageValue(eachTask.taskExhaust) > mtime then
                     player:teleportTo(eachTask.taskPosition)

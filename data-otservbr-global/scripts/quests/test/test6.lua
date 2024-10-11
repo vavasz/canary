@@ -16,11 +16,6 @@ local function createMonsters(mountTable, damageType)
 
         monster.outfit = {
             lookType = mountTable.ltype[i],
-            lookHead = mountTable.lhead[i],
-            lookBody = mountTable.lbody[i],
-            lookLegs = mountTable.llegs[i],
-            lookFeet = mountTable.lfeet[i],
-            lookAddons = mountTable.laddons[i],
         }
 
         monster.raceId = mountTable.idrace[i]
@@ -39,9 +34,9 @@ local function createMonsters(mountTable, damageType)
         monster.events = {
         }
 
-        monster.experience = 1000000
-        monster.health = 700000
-        monster.maxHealth = 700000
+        monster.experience = 700000
+        monster.health = 350000
+        monster.maxHealth = 350000
         monster.race = "blood"
         monster.corpse = 111
         monster.speed = 250
@@ -95,14 +90,14 @@ local function createMonsters(mountTable, damageType)
 
         monster.attacks = {
             { name = "melee", interval = 2000, chance = 100, minDamage = -3000, maxDamage = -6600, effect = effects[math.random(#effects)] },
-            { name = "combat", interval = 2500, chance = 45, type = damageType, minDamage = -4500, maxDamage = -5700, radius = 5, effect = effects[math.random(#effects)], target = true },
-            { name = "combat", interval = 2500, chance = 45, type = damageType, minDamage = -4700, maxDamage = -4900, radius = 5, effect = effects[math.random(#effects)], target = true },
-            { name = "combat", interval = 2000, chance = 45, type = damageType, minDamage = -4300, maxDamage = -5000, length = 8, spread = 3, effect = effects[math.random(#effects)], target = false },
-            { name = "combat", interval = 3000, chance = 45, type = damageType, minDamage = -3600, maxDamage = -6100, radius = 4, effect = effects[math.random(#effects)], target = true },
-            { name = "combat", interval = 2000, chance = 45, type = damageType, minDamage = -4200, maxDamage = -6500, length = 6, spread = 2, effect = effects[math.random(#effects)], target = false },
-            { name = "combat", interval = 2500, chance = 45, type = damageType, minDamage = -4700, maxDamage = -4900, radius = 5, effect = effects[math.random(#effects)], target = true },
-            { name = "combat", interval = 2000, chance = 45, type = damageType, minDamage = -4300, maxDamage = -5000, length = 8, spread = 3, effect = effects[math.random(#effects)], target = false },
-            { name = "combat", interval = 3000, chance = 45, type = damageType, minDamage = -3600, maxDamage = -6100, radius = 4, effect = effects[math.random(#effects)], target = true },
+            { name = "combat", interval = 2500, chance = 25, type = damageType, minDamage = -4500, maxDamage = -5700, radius = 5, effect = effects[math.random(#effects)], target = true },
+            { name = "combat", interval = 2500, chance = 25, type = damageType, minDamage = -4700, maxDamage = -4900, radius = 5, effect = effects[math.random(#effects)], target = true },
+            { name = "combat", interval = 2000, chance = 25, type = damageType, minDamage = -4300, maxDamage = -5000, length = 8, spread = 3, effect = effects[math.random(#effects)], target = false },
+            { name = "combat", interval = 3000, chance = 25, type = damageType, minDamage = -3600, maxDamage = -6100, radius = 4, effect = effects[math.random(#effects)], target = true },
+            { name = "combat", interval = 2000, chance = 25, type = damageType, minDamage = -4200, maxDamage = -6500, length = 6, spread = 2, effect = effects[math.random(#effects)], target = false },
+            { name = "combat", interval = 2500, chance = 25, type = damageType, minDamage = -4700, maxDamage = -4900, radius = 5, effect = effects[math.random(#effects)], target = true },
+            { name = "combat", interval = 2000, chance = 25, type = damageType, minDamage = -4300, maxDamage = -5000, length = 8, spread = 3, effect = effects[math.random(#effects)], target = false },
+            { name = "combat", interval = 3000, chance = 25, type = damageType, minDamage = -3600, maxDamage = -6100, radius = 4, effect = effects[math.random(#effects)], target = true },
         }
 
         mType:register(monster)        
@@ -110,50 +105,14 @@ local function createMonsters(mountTable, damageType)
 end
 
 -- Elemental Groups
-local elementalFire = {
-    name = {"instanced fire overloading", "instanced lava overloading"},
-    ltype = {1407, 1408},
-    lhead = {114, 114},
-    lbody = {94, 94},
-    llegs = {114, 114},
-    lfeet = {114, 114},
-    laddons = {3, 3},
-    idrace = {2698, 2699}
+local elementalGroups = {
+    {name = {"instanced fire overloading"}, ltype = {1891}, idrace = {2698}, damageType = COMBAT_FIREDAMAGE},
+    {name = {"instanced storm overloading"}, ltype = {1887}, idrace = {2699}, damageType = COMBAT_ENERGYDAMAGE},
+    {name = {"instanced swamp overloading"}, ltype = {1889}, idrace = {2700}, damageType = COMBAT_EARTHDAMAGE},
+    {name = {"instanced ice overloading"}, ltype = {1890}, idrace = {2701}, damageType = COMBAT_ICEDAMAGE},
 }
-createMonsters(elementalFire, COMBAT_FIREDAMAGE)
 
-local elementalEnergy = {
-    name = {"instanced storm overloading", "instanced tempest overloading"},
-    ltype = {1737, 932},
-    lhead = {114, 114},
-    lbody = {91, 91},
-    llegs = {114, 114},
-    lfeet = {114, 114},
-    laddons = {3, 3},
-    idrace = {2700, 2701}
-}
-createMonsters(elementalEnergy, COMBAT_ENERGYDAMAGE)
+for _, group in ipairs(elementalGroups) do
+    createMonsters(group, group.damageType)
+end
 
-local elementalEarth = {
-    name = {"instanced swamp overloading", "instanced nature overloading"},
-    ltype = {1119, 1188},
-    lhead = {114, 114},
-    lbody = {83, 83},
-    llegs = {114, 114},
-    lfeet = {114, 114},
-    laddons = {3, 3},
-    idrace = {2702, 2703}
-}
-createMonsters(elementalEarth, COMBAT_EARTHDAMAGE)
-
-local elementalIce = {
-    name = {"instanced ice overloading", "instanced avalanche overloading"},
-    ltype = {1188, 1189},
-    lhead = {114, 114},
-    lbody = {85, 85},
-    llegs = {114, 114},
-    lfeet = {114, 114},
-    laddons = {3, 3},
-    idrace = {2704, 2705}
-}
-createMonsters(elementalIce, COMBAT_ICEDAMAGE)
