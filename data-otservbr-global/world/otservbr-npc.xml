@@ -417,7 +417,7 @@
 	<npc centerx="31875" centery="32361" centerz="5" radius="1">
 		<npc name="LootSeller" x="0" y="0" z="5" spawntime="60" />
 	</npc>
-	<npc centerx="31880" centery="32361" centerz="5" radius="1">
+	<npc centerx="31863" centery="32365" centerz="5" radius="1">
 		<npc name="Drome" x="0" y="0" z="5" spawntime="60" />
 	</npc>
 	<npc centerx="33618" centery="32372" centerz="5" radius="1">
