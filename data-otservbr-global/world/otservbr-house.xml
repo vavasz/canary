@@ -1020,5 +1020,5 @@
 	<house name="Unnamed House #3720" houseid="3720" entryx="31753" entryy="32368" entryz="5" rent="0" townid="27" size="53" clientid="0" beds="0" />
 	<house name="Unnamed House #3721" houseid="3721" entryx="31777" entryy="32350" entryz="5" rent="0" guildhall="true" townid="27" size="292" clientid="0" beds="0" />
 	<house name="Unnamed House #3722" houseid="3722" entryx="31745" entryy="32341" entryz="5" rent="0" townid="27" size="50" clientid="0" beds="0" />
-	<house name="" houseid="3734" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="0" clientid="0" beds="0" />
+	<house name="Unnamed House #3735" houseid="3735" entryx="42" entryy="52" entryz="15" rent="0" townid="27" size="1565" clientid="0" beds="0" />
 </houses>
