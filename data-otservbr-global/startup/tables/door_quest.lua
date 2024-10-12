@@ -46,7 +46,7 @@ QuestDoorAction = {
 		itemPos = { { x = 32455, y = 31967, z = 14 } },
 	},
 	-- To Outfox a Fox Quest, mining helmet door
-	[Storage.Quest.U8_1.ToOutfoxAFoxQuest.Questline] = {
+	[Storage.TibiaTales.ToOutfoxAFoxQuest.Questline] = {
 		itemId = false,
 		itemPos = { { x = 32467, y = 31969, z = 5 } },
 	},
@@ -258,15 +258,15 @@ QuestDoorAction = {
 		itemPos = { { x = 33452, y = 32241, z = 7 } },
 	},
 	-- Ferumbras ascension door
-	[Storage.Quest.U10_90.FerumbrasAscension.FirstDoor] = {
+	[Storage.FerumbrasAscension.FirstDoor] = {
 		itemId = false,
 		itemPos = { { x = 33479, y = 32782, z = 11 } },
 	},
-	[Storage.Quest.U10_90.FerumbrasAscension.MonsterDoor] = {
+	[Storage.FerumbrasAscension.MonsterDoor] = {
 		itemId = false,
 		itemPos = { { x = 33482, y = 32786, z = 11 } },
 	},
-	[Storage.Quest.U10_90.FerumbrasAscension.TarbazDoor] = {
+	[Storage.FerumbrasAscension.TarbazDoor] = {
 		itemId = false,
 		itemPos = { { x = 33470, y = 32786, z = 11 } },
 	},
@@ -289,19 +289,19 @@ QuestDoorAction = {
 		itemPos = { { x = 33046, y = 31302, z = 7 } },
 	},
 	-- Dark trails/oramond door
-	[Storage.Quest.U10_50.OramondQuest.ToTakeRoots.Door] = {
+	[Storage.Oramond.DoorBeggarKing] = {
 		itemId = false,
 		itemPos = { { x = 33573, y = 31982, z = 7 } },
 	},
-	[Storage.Quest.U10_50.OramondQuest.TheAncientSewers.Door] = {
+	[Storage.Oramond.DoorAbandonedSewer] = {
 		itemId = false,
 		itemPos = { { x = 33549, y = 31974, z = 10 } },
 	},
-	[Storage.Quest.U10_50.DarkTrails.DoorQuandon] = {
+	[Storage.DarkTrails.DoorQuandon] = {
 		itemId = false,
 		itemPos = { { x = 33573, y = 31953, z = 7 } },
 	},
-	[Storage.Quest.U10_50.DarkTrails.DoorHideout] = {
+	[Storage.DarkTrails.DoorHideout] = {
 		itemId = false,
 		itemPos = { { x = 33666, y = 31924, z = 7 } },
 	},
@@ -481,19 +481,19 @@ QuestDoorAction = {
 		itemPos = { { x = 32982, y = 31439, z = 3 } },
 	},
 	-- Postman door
-	[Storage.Quest.U7_24.ThePostmanMissions.Mission05] = {
+	[Storage.Postman.Mission05] = {
 		itemId = false,
 		itemPos = { { x = 32567, y = 32023, z = 6 } },
 	},
-	[Storage.Quest.U7_24.ThePostmanMissions.Mission08] = {
+	[Storage.Postman.Mission08] = {
 		itemId = false,
 		itemPos = { { x = 32515, y = 32248, z = 8 } },
 	},
-	[Storage.Quest.U7_24.ThePostmanMissions.Mission09] = {
+	[Storage.Postman.Mission09] = {
 		itemId = false,
 		itemPos = { { x = 32569, y = 32023, z = 6 } },
 	},
-	[Storage.Quest.U7_24.ThePostmanMissions.Door] = {
+	[Storage.Postman.Door] = {
 		itemId = false,
 		itemPos = {
 			{ x = 31921, y = 32652, z = 8 },
@@ -592,11 +592,11 @@ QuestDoorAction = {
 		itemId = false,
 		itemPos = { { x = 32608, y = 31516, z = 14 } },
 	},
-	[Storage.Quest.U8_6.AnInterestInBotany.ChestDoor] = {
+	[Storage.TibiaTales.AnInterestInBotany.ChestDoor] = {
 		itemId = false,
 		itemPos = { { x = 33007, y = 31536, z = 10 } },
 	},
-	[Storage.Quest.U8_1.TibiaTales.AritosTaskDoor] = {
+	[Storage.TibiaTales.AritosTaskDoor] = {
 		itemId = false,
 		itemPos = { { x = 33247, y = 32534, z = 8 } },
 	},
@@ -656,7 +656,7 @@ QuestDoorAction = {
 		},
 	},
 	-- Fathers burden door
-	[Storage.Quest.U8_6.AFathersBurden.QuestLog] = {
+	[Storage.FathersBurden.QuestLog] = {
 		itemId = false,
 		itemPos = {
 			{ x = 31989, y = 31225, z = 7 },
@@ -678,7 +678,7 @@ QuestDoorAction = {
 		itemPos = { { x = 32316, y = 31757, z = 9 } },
 	},
 	-- White raven monastery door
-	[Storage.Quest.U7_24.TheWhiteRavenMonastery.Door] = {
+	[Storage.WhiteRavenMonastery.Door] = {
 		itemId = false,
 		itemPos = {
 			{ x = 32171, y = 31936, z = 7 },
@@ -825,19 +825,12 @@ QuestDoorAction = {
 		itemId = false,
 		itemPos = { { x = 32466, y = 32494, z = 8 } },
 	},
-	[Storage.Quest.U10_80.GrimvaleQuest.AncientFeudDoors] = {
+	[Storage.Quest.U10_80.Grimvale.AncientFeudDoors] = {
 		itemId = false,
 		itemPos = {
 			{ x = 33124, y = 32261, z = 10 },
 			{ x = 33123, y = 32230, z = 12 },
 			{ x = 33159, y = 32322, z = 12 },
-		},
-	},
-	[Storage.Quest.U10_90.FerumbrasAscension.TarbazDoor] = {
-		itemId = 22508,
-		itemPos = {
-			{ x = 33476, y = 32791, z = 11 },
-			{ x = 33470, y = 32786, z = 11 },
 		},
 	},
 	[Storage.Kilmaresh.AccessDoor] = {
