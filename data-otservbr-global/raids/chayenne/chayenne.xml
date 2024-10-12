@@ -5,5 +5,7 @@
 	<announce delay="50000" type="Event" message="Get prepare mortals, the visit of Chayenne is near." />
 	<announce delay="60000" type="Event" message="Chayenne has returned to his citadel once more. Be careful there." />
 	<!--Single Spawns-->
-	<singlespawn delay="60000" name="Chayenne" x="32799" y="31604" z="7"/>
-</raid>
+<areaspawn delay="1000" fromx="32141" fromy="32040" fromz="0" tox="32207" toy="32129" toz="0">
+		<monster name="Chayenne" amount="1" />
+	</areaspawn>
+	</raid>

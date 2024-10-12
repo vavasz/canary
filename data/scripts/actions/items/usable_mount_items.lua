@@ -3,6 +3,19 @@ local config = {
 	[23684] = { name = "neon sparkid", mountId = 98, tameMessage = "You receive the permission to ride a neon sparkid." },
 	[23685] = { name = "vortexion", mountId = 99, tameMessage = "You receive the permission to ride a vortexion." },
 	[32629] = { name = "haze", mountId = 162, achievement = "Nothing but Hot Air", tameMessage = "You are now versed to ride the haze!" },
+	[49609] = { name = "Bulltar Mount", mountId = 231, tameMessage = "Voce adquiriu a montaria: Bulltar!" },
+	[49623] = { name = "Dargka Mount", mountId = 232, tameMessage = "Voce adquiriu a montaria: Darkga!" },
+	[49610] = { name = "Dusk Prayer", mountId = 165, tameMessage = "Voce adquiriu a montaria: Dusk Prayer!" },
+	[48515] = { name = "Mutated Abomination", mountId = 206, tameMessage = "Voce adquiriu a montaria: Mutated Abomination!" },
+	[49624] = { name = "Void Watcher", mountId = 179, tameMessage = "Voce adquiriu a montaria: Void Watcher!" },
+	[49626] = { name = "Wrathfire Pegasus", mountId = 225, tameMessage = "Voce adquiriu a montaria: Wrathfire Pegasus!" },
+	[48512] = { name = "Glacier Wyrm", mountId = 228, tameMessage = "Voce adquiriu a montaria: Clacier Wyrm!" },
+	[49702] = { name = "Cerberus Champion", mountId = 146, tameMessage = "Voce adquiriu a montaria: Cerberus Champion!" },
+	[48510] = { name = "Radiant Reaven", mountId = 193, tameMessage = "Voce adquiriu a montaria: Radiant Reaven!" },
+	[48509] = { name = "Jousting Eagle", mountId = 145, tameMessage = "Voce adquiriu a montaria: Jousting Eagle!" },
+	[49611] = { name = "Antelope", mountId = 163, tameMessage = "Voce adquiriu a montaria: Antelope!" },
+	[49625] = { name = "MegaHydra", mountId = 234, tameMessage = "Voce adquiriu a montaria: MegaHydra!" },
+
 }
 
 local usableItemMounts = Action()

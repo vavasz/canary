@@ -3,5 +3,7 @@
 	<!--Announcements-->
 <announce delay="1000" type="event" message="Beware of Zevelon Duskbringer!" />
 	<!--Single Spawns-->
-	<singlespawn delay="1000" name="Zevelon Duskbringer" x="32754" y="31578" z="11" />
+	<areaspawn delay="1000" fromx="32141" fromy="32040" fromz="0" tox="32207" toy="32129" toz="0">
+		<monster name="Zevelon Duskbringer" amount="1" />
+	</areaspawn>
 </raid>

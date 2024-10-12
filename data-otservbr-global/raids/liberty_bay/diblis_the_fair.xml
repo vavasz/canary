@@ -3,5 +3,7 @@
 	<!--Announcements-->
 	<announce delay="1000" type="event" message="Beware of Diblis The Fair!" />
 	<!--Single Spawns-->
-	<singlespawn delay="1000" name="Diblis The Fair" x="32009" y="32795" z="10" />
-</raid>
+	<areaspawn delay="1000" fromx="32141" fromy="32040" fromz="0" tox="32207" toy="32129" toz="0">
+		<monster name="Diblis The Fair" amount="1" />
+	</areaspawn>
+	</raid>

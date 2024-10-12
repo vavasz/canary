@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <raid>
 	<!--Single Spawns-->
-	<singlespawn delay="1000" name="The Welter" x="33026" y="32660" z="5" />
+	<areaspawn delay="1000" fromx="32141" fromy="32040" fromz="0" tox="32207" toy="32129" toz="0">
+		<monster name="The Welter" amount="1" />
+	</areaspawn>
 </raid>

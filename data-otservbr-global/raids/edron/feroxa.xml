@@ -6,5 +6,7 @@
 	mortal realm in the grimvale mines." />
 	<announce delay="60000" type="Event" message="The Feroxa master has revealed itself in the mines of grimvale." />
 	<!--Single Spawns-->
-	<singlespawn delay="60000" name="Feroxa" x="33389" y="31539" z="11"/>
-</raid>
+<areaspawn delay="1000" fromx="32141" fromy="32040" fromz="0" tox="32207" toy="32129" toz="0">
+		<monster name="Feroxa" amount="1" />
+	</areaspawn>
+	</raid>

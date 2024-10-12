@@ -230,5 +230,43 @@
 	<mount id="228" clientid="1742" name="Glacier Wyrm" speed="10" premium="no" type="store" />
 	<mount id="229" clientid="1743" name="Bog Tyrant" speed="10" premium="no" type="store" />
 	<mount id="230" clientid="1744" name="Crimson Fang" speed="10" premium="no" type="store" />
-	<mount id="231" clientid="1778" name="Bumblebee" speed="10" premium="no" type="store" />
+	<mount id="231" clientid="1717" name="Bulltar Mount" speed="10" premium="no" type="quest" />
+	<mount id="232" clientid="1703" name="Dargka Mount" speed="10" premium="no" type="quest" />
+	<mount id="234" clientid="1712" name="Megahydra" speed="10" premium="no" type="quest" />
+	<mount id="235" clientid="1792" name="Great Gryphon" speed="10" premium="no" type="quest" />
+	<mount id="236" clientid="1793" name="Furry Nine Tails" speed="10" premium="no" type="quest" />
+	<mount id="237" clientid="1794" name="Icy Nine Tails" speed="10" premium="no" type="quest" />
+	<mount id="238" clientid="1795" name="Shadow Nine Tails" speed="10" premium="no" type="quest" />
+	<mount id="239" clientid="1805" name="Heaven's Draptor" speed="10" premium="no" type="quest" />
+	<mount id="240" clientid="1823" name="Shadowbeak" speed="10" premium="no" type="quest" />
+	<mount id="241" clientid="1840" name="God's Horse" speed="10" premium="no" type="quest" />
+	<mount id="242" clientid="1844" name="Red Phanter" speed="10" premium="no" type="quest" />
+	<mount id="243" clientid="1845" name="Sapphire Wolf" speed="10" premium="no" type="quest" />
+	<mount id="244" clientid="1846" name="Sapphire Scorpion" speed="10" premium="no" type="quest" />
+	<mount id="245" clientid="1847" name="Sapphire Draptor" speed="10" premium="no" type="quest" />
+	<mount id="246" clientid="1848" name="Emerald Dragonling" speed="10" premium="no" type="quest" />
+	<mount id="247" clientid="1849" name="Unfancy Sparkion" speed="10" premium="no" type="quest" />
+	<mount id="248" clientid="1850" name="Icy Savage" speed="10" premium="no" type="quest" />
+	<mount id="249" clientid="1851" name="Mould Bug" speed="10" premium="no" type="quest" />
+	<mount id="250" clientid="1852" name="Earthy Bug" speed="10" premium="no" type="quest" />
+	<mount id="251" clientid="1853" name="Icy Draptor" speed="10" premium="no" type="quest" />
+	<mount id="252" clientid="1854" name="Mould Draptor" speed="10" premium="no" type="quest" />
+	<mount id="253" clientid="1855" name="Icy Scorpion" speed="10" premium="no" type="quest" />
+	<mount id="254" clientid="1856" name="Fiery Wolf" speed="10" premium="no" type="quest" />
+	<mount id="255" clientid="1857" name="Shadow Bug" speed="10" premium="no" type="quest" />
+	<mount id="256" clientid="1858" name="Dark Phanter" speed="10" premium="no" type="quest" />
+	<mount id="257" clientid="1862" name="Stone Stampor" speed="10" premium="no" type="quest" />
+	<mount id="258" clientid="1863" name="Dargdoom" speed="10" premium="no" type="quest" />
+	<mount id="259" clientid="1866" name="Frozen Sparkion" speed="10" premium="no" type="quest" />
+	<mount id="260" clientid="1867" name="Shadow Draptor" speed="10" premium="no" type="quest" />
+	<mount id="261" clientid="1884" name="Fiery Overhorse" speed="10" premium="no" type="quest" />
+	<mount id="262" clientid="1885" name="Shadow Overhorse" speed="10" premium="no" type="quest" />
+	<mount id="263" clientid="1899" name="Cloaptor" speed="10" premium="no" type="quest" />
+	<mount id="264" clientid="1902" name="Ashrgdoon" speed="10" premium="no" type="quest" />
+	<mount id="265" clientid="1903" name="Ablazing Beast" speed="10" premium="no" type="quest" />
+	<mount id="266" clientid="1907" name="Glowing Absalon" speed="10" premium="no" type="quest" />
+	<mount id="267" clientid="1908" name="Fiery Absalon" speed="10" premium="no" type="quest" />
+	<mount id="268" clientid="1909" name="Sapphire Absalon" speed="10" premium="no" type="quest" />
+	<mount id="269" clientid="1910" name="Golden Absalon" speed="10" premium="no" type="quest" />
+	<mount id="270" clientid="1913" name="King's Lion" speed="10" premium="no" type="quest" />
 </mounts>

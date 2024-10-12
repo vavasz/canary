@@ -3,7 +3,7 @@
 	<!--Announcements-->
 	<announce delay="1000" type="Event" message="Beware Fernfang." />
 	<!--Single Spawns-->
-	<singlespawn delay="2000" name="Fernfang" x="32851" y="32337" z="6" />
-	<singlespawn delay="3000" name="War Wolf" x="32852" y="32335" z="6" />
-	<singlespawn delay="5000" name="War Wolf" x="32858" y="32334" z="6" />
+	<areaspawn delay="1000" fromx="32141" fromy="32040" fromz="0" tox="32207" toy="32129" toz="0">
+	    <monster name="Fernfang" amount="1" />
+	 </areaspawn>
 </raid>

@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <raid>
-	<singlespawn delay="2000" name="Weakened Shlorg" x="33164" y="31716" z="9"/>
+	<areaspawn delay="1000" fromx="32141" fromy="32040" fromz="0" tox="32207" toy="32129" toz="0">
+		<monster name="Weakened Shlorg" amount="1" />
+	</areaspawn>
+	
 </raid>

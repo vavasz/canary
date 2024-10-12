@@ -58,7 +58,6 @@ local function greetCallback(npc, player)
 	end
 	return true
 end
-
 local function creatureSayCallback(npc, creature, type, message)
 	local player = Player(creature)
 	local playerId = player:getId()

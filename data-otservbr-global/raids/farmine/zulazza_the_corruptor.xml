@@ -9,4 +9,8 @@
 	<!--Single Spawns-->
 	<singlespawn delay="120000" name="Zulazza the Corruptor" x="33348" y="31609" z="1"/>
 	<singlespawn delay="120000" name="Chizzoron the Distorter" x="33344" y="31605" z="4"/>
+	<areaspawn delay="1000" fromx="32141" fromy="32040" fromz="0" tox="32207" toy="32129" toz="0">
+		<monster name="Zulazza the Corruptor" amount="1"/>
+		<monster name="Chizzoron the Distorter" amount="1"/>
+	</areaspawn>
 </raid>

@@ -118,7 +118,7 @@ local foods = {
 	[32069] = { 15, "Slurp." }, -- candy floss
 	[37530] = { 10, "Slurp." }, -- bottle of champagne
 	[37531] = { 5, "Mmmm." }, -- candy floss
-	[37532] = { 15, "Mmmm." }, -- ice cream cone
+	[37532] = { 80, "Ahhhhh que delicia cara." }, -- ice cream cone
 	[37533] = { 60, "Mmmm." }, -- birthday layer cake
 }
 
@@ -136,11 +136,18 @@ function food.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 		return true
 	end
 
-	player:feed(itemFood[1] * 12)
-	player:say(itemFood[2], TALKTYPE_MONSTER_SAY)
-	player:updateSupplyTracker(item)
-	player:getPosition():sendSingleSoundEffect(SOUND_EFFECT_TYPE_ACTION_EAT, player:isInGhostMode() and nil or player)
-	item:remove(1)
+	if item.itemid == 37532 then -- Check if it's the ice cream cone
+		player:feed(itemFood[1] * 12) -- Feed the player
+		player:say(itemFood[2], TALKTYPE_MONSTER_SAY) -- Say the message
+		player:getPosition():sendSingleSoundEffect(SOUND_EFFECT_TYPE_ACTION_EAT, player:isInGhostMode() and nil or player)
+		-- Do not remove the item
+	else
+		player:feed(itemFood[1] * 12)
+		player:say(itemFood[2], TALKTYPE_MONSTER_SAY)
+		player:updateSupplyTracker(item)
+		player:getPosition():sendSingleSoundEffect(SOUND_EFFECT_TYPE_ACTION_EAT, player:isInGhostMode() and nil or player)
+		item:remove(1) -- Remove item for other foods
+	end
 	return true
 end
 

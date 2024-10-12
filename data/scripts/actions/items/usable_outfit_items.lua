@@ -4,6 +4,30 @@ local outfitConfig = {
 	[16253] = { female = 514, male = 516, addon = 1, effect = CONST_ME_GREEN_RINGS, achievement = "Funghitastic" },
 	[16254] = { female = 514, male = 516, addon = 2, effect = CONST_ME_GREEN_RINGS, achievement = "Funghitastic" },
 
+	[43501] = { female = 1203, male = 1202, addon = 1, effect = CONST_ME_GREEN_RINGS },
+	[43502] = { female = 1203, male = 1202, addon = 2, effect = CONST_ME_GREEN_RINGS },
+
+	[43503] = { female = 1445, male = 1444, addon = 1, effect = CONST_ME_GREEN_RINGS },
+	[43504] = { female = 1445, male = 1444, addon = 2, effect = CONST_ME_GREEN_RINGS },
+
+	[48514] = { female = 1613, male = 1612, addon = 1, effect = CONST_ME_GREEN_RINGS },
+	[44433] = { female = 1613, male = 1612, addon = 2, effect = CONST_ME_GREEN_RINGS },
+
+	[44180] = { female = 1714, male = 1713, addon = 1, effect = CONST_ME_GREEN_RINGS },
+	[44182] = { female = 1714, male = 1713, addon = 2, effect = CONST_ME_GREEN_RINGS },
+
+	[48419] = { female = 1490, male = 1489, addon = 1, effect = CONST_ME_GREEN_RINGS },
+	[48197] = { female = 1490, male = 1489, addon = 2, effect = CONST_ME_GREEN_RINGS },
+
+	[44321] = { female = 1723, male = 1722, addon = 1, effect = CONST_ME_GREEN_RINGS },
+	[44989] = { female = 1723, male = 1722, addon = 2, effect = CONST_ME_GREEN_RINGS },
+
+	[44729] = { female = 1501, male = 1500, addon = 1, effect = CONST_ME_GREEN_RINGS },
+	[44438] = { female = 1501, male = 1500, addon = 2, effect = CONST_ME_GREEN_RINGS },
+
+	[43930] = { female = 1187, male = 1186, addon = 1, effect = CONST_ME_GREEN_RINGS },
+	[49695] = { female = 1187, male = 1186, addon = 2, effect = CONST_ME_GREEN_RINGS },
+
 	-- crystal warlord
 	[16255] = { female = 513, male = 512, effect = CONST_ME_GIANTICE },
 	[16256] = { female = 513, male = 512, addon = 1, effect = CONST_ME_GIANTICE, achievement = "Crystal Clear" },

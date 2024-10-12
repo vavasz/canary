@@ -9,3 +9,9 @@ dofile(DATA_DIRECTORY .. "/lib/quests/quest.lua")
 
 -- Tables library
 dofile(DATA_DIRECTORY .. "/lib/tables/load.lua")
+
+-- Task Custom
+dofile(DATA_DIRECTORY.. '/scripts/custom/load.lua')
+
+-- Quests library
+dofile(DATA_DIRECTORY .. '/lib/custom/simple_crafting_system.lua')

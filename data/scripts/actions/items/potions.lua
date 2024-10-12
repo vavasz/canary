@@ -51,6 +51,11 @@ local potions = {
 	[23374] = { health = { 420, 580 }, mana = { 250, 350 }, vocations = { VOCATION.BASE_ID.PALADIN }, level = 130, flask = 284, description = "Only paladins of level 130 or above may drink this fluid." },
 	[23375] = { health = { 875, 1125 }, vocations = { VOCATION.BASE_ID.KNIGHT }, level = 200, flask = 284, description = "Only knights of level 200 or above may drink this fluid." },
 	[35563] = { vocations = { VOCATION.BASE_ID.SORCERER, VOCATION.BASE_ID.DRUID }, level = 14, func = magicshield, effect = CONST_ME_ENERGYAREA, description = "Only sorcerers and druids of level 14 or above may drink this potion." },
+	[49645] = { health = { 2300, 3700 }, mana = { 2300, 3700 }, vocations = { VOCATION.BASE_ID.PALADIN }, level = 4000, flask = 283, description = "Only paladins of level 4000 or above may drink this fluid." },
+	[49646] = { mana = { 3100, 3400 }, vocations = { VOCATION.BASE_ID.SORCERER, VOCATION.BASE_ID.DRUID }, level = 4000, flask = 283, description = "Only mages of level 4000 or above may drink this fluid." },
+	[49647] = { health = { 3500, 4100 }, vocations = { VOCATION.BASE_ID.KNIGHT }, level = 4000, flask = 283, description = "Only knights of level 4000 or above may drink this fluid." },
+	[49679] = { mana = { 4600, 5000 }, vocations = { VOCATION.BASE_ID.SORCERER, VOCATION.BASE_ID.DRUID, VOCATION.BASE_ID.PALADIN }, level = 6000, flask = 283, description = "Only mages and paladins of level 6000 or above may drink this fluid." },
+	[49678] = { health = { 5000, 5100 }, vocations = { VOCATION.BASE_ID.PALADIN, VOCATION.BASE_ID.KNIGHT }, level = 6000, flask = 283, description = "Only knights and paladins of level 6000 or above may drink this fluid." },
 }
 
 local flaskPotion = Action()

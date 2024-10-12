@@ -771,7 +771,6 @@ std::vector<PlayerWheelGem> PlayerWheel::getRevealedGems() const {
 	if (unlockedGemUUIDs.empty()) {
 		return unlockedGems;
 	}
-
 	std::vector<std::string> sortedUnlockedGemGUIDs;
 	for (const auto &uuid : unlockedGemUUIDs) {
 		sortedUnlockedGemGUIDs.push_back(uuid);

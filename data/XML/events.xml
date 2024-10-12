@@ -1,15 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <events>
-	<event name="Otservbr example 1" startdate="11/03/2020" enddate="12/30/2023" script="example.lua" >
-		<ingame exprate="100" lootrate="100" bosslootrate="100" spawnrate="100" skillrate="100" />
-		<description description="Otserver br example 1 description double exp and a half, double loot !chance!, regular spawn and double skill" />
+	<event name="50% exp e loot" startdate="10/05/2024" enddate="10/06/2024" script="" >
+		<ingame exprate="150" lootrate="150" bosslootrate="150" spawnrate="100" skillrate="100" />
+		<description description="50% a mais de loot e EXP!" />
 		<colors colordark="#235c00" colorlight="#2d7400" />
 		<details displaypriority="6" isseasonal="0" specialevent="0" />
 	</event>
-	<event name="Otservbr example 2" startdate="2/2/2022" enddate="12/31/2023" script="" >
-		<ingame exprate="100" lootrate="100" bosslootrate="100" spawnrate="100" skillrate="100" />
-		<description description="Otserver br example 2 description 50% less exp, triple loot !chance!, 50% faster spawn and regular skill" />
-		<colors colordark="#735D10" colorlight="#8B6D05" />
+	<event name="Double Influenced" startdate="09/06/2024" enddate="09/09/2024" script="" >
+		<ingame exprate="100" lootrate="100" bosslootrate="100" spawnrate="100" forgeInfluencedLimit="200" />
+		<description description="2x influenced monsters!" />
+		<colors colordark="#235c00" colorlight="#2d7400" />
+		<details displaypriority="6" isseasonal="0" specialevent="0" />
+	</event>
+	<event name="Double Skill" startdate="09/13/2024" enddate="09/16/2024" script="" >
+		<ingame exprate="100" lootrate="100" bosslootrate="100" spawnrate="100" skillrate="200" />
+		<description description="Double Skill" />
+		<colors colordark="#235c00" colorlight="#2d7400" />
+		<details displaypriority="6" isseasonal="0" specialevent="0" />
+	</event>
+	<event name="Double Respawn" startdate="09/20/2024" enddate="09/23/2024" script="" >
+		<ingame exprate="100" lootrate="100" bosslootrate="100" spawnrate="200" skillrate="100" />
+		<description description="Double Respawn" />
+		<colors colordark="#235c00" colorlight="#2d7400" />
+		<details displaypriority="6" isseasonal="0" specialevent="0" />
+	</event>
+	<event name="50% exp e loot" startdate="09/21/2024" enddate="09/22/2024" script="" >
+		<ingame exprate="150" lootrate="150" bosslootrate="150" spawnrate="100" skillrate="100" />
+		<description description="50% a mais de loot e EXP!" />
+		<colors colordark="#235c00" colorlight="#2d7400" />
+		<details displaypriority="6" isseasonal="0" specialevent="0" />
+	</event>
+	<event name="Double Best/Bosstiary" startdate="09/27/2024" enddate="09/30/2024" script="" >
+		<ingame exprate="100" lootrate="100" bosslootrate="100" bosstiaryKillMultiplier="200" bestiaryKillMultiplier="200" />
+		<description description="Bestiario e Bosstiario dobrados!" />
+		<colors colordark="#235c00" colorlight="#2d7400" />
 		<details displaypriority="6" isseasonal="0" specialevent="0" />
 	</event>
 </events>

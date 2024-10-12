@@ -5,10 +5,16 @@ combat:setParameter(COMBAT_PARAM_DISTANCEEFFECT, CONST_ANI_ENERGYBALL)
 combat:setArea(createCombatArea(AREA_CIRCLE3X3))
 
 function onGetFormulaValues(player, level, magicLevel)
-	local min = (level / 5) + (magicLevel * 1) + 6
-	local max = (level / 5) + (magicLevel * 2.6) + 16
-	return -min, -max
-end
+	local min = (level / 2.5) + (magicLevel * 9.2) + 7
+	local max = (level / 2.5) + (magicLevel * 17.8) + 17
+	local voc = player:getVocation():getBaseId()
+
+if voc < 3 then 
+return -min*2.2, -max*2.2
+else
+return -min, -max
+end 
+	end
 
 combat:setCallback(CALLBACK_PARAM_LEVELMAGICVALUE, "onGetFormulaValues")
 
@@ -29,6 +35,6 @@ rune:charges(4)
 rune:level(28)
 rune:magicLevel(4)
 rune:cooldown(2 * 1000)
-rune:groupCooldown(2 * 1000)
+rune:groupCooldown(1 * 1000)
 rune:isBlocking(false) -- True = Solid / False = Creature
 rune:register()

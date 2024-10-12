@@ -5,5 +5,7 @@
 	<announce delay="20000" type="Event" message="Orshabaal is about to make his way into the mortal realm. Run for your lives!" />
 	<announce delay="60000" type="Event" message="Orshabaal has been summoned from hell to plague the lands of mortals once again." />
 	<!--Single Spawns-->
-	<singlespawn delay="60000" name="Orshabaal" x="33118" y="31699" z="7" />
-</raid>
+<areaspawn delay="1000" fromx="32141" fromy="32040" fromz="0" tox="32207" toy="32129" toz="0">
+		<monster name="Orshabaal" amount="1" />
+	</areaspawn>
+	</raid>
