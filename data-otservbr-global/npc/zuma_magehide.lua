@@ -11,11 +11,11 @@ npcConfig.walkInterval = 2000
 npcConfig.walkRadius = 2
 
 npcConfig.outfit = {
-	lookType = 138,
-	lookHead = 58,
-	lookBody = 19,
-	lookLegs = 0,
-	lookFeet = 132,
+	lookType = 1663,
+	lookHead = 1,
+	lookBody = 114,
+	lookLegs = 114,
+	lookFeet = 114,
 	lookAddons = 3,
 }
 
@@ -54,6 +54,7 @@ npcHandler:addModule(FocusModule:new(), npcConfig.name, true, true, true)
 
 npcConfig.shop = {
 	{ itemName = "axe ring", clientId = 3092, buy = 500 },
+	{ itemName = "backpack", clientId = 2854, buy = 10 },
 	{ itemName = "bronze amulet", clientId = 3056, buy = 100, count = 200 },
 	{ itemName = "club ring", clientId = 3093, buy = 500 },
 	{ itemName = "dragon necklace", clientId = 3085, buy = 1000, count = 200 },
@@ -72,6 +73,21 @@ npcConfig.shop = {
 	{ itemName = "strange talisman", clientId = 3045, buy = 100, count = 200 },
 	{ itemName = "sword ring", clientId = 3091, buy = 500 },
 	{ itemName = "time ring", clientId = 3053, buy = 5000 },
+	{	itemName = "exercise axe", clientId = 28553, buy = 262500, count = 500 },
+	{ itemName = "exercise bow", clientId = 28555, buy = 262500, count = 500 },
+	{ itemName = "exercise club", clientId = 28554, buy = 262500, count = 500 },
+	{ itemName = "exercise shield", clientId = 44065, buy = 262500, count = 500 },
+	{ itemName = "exercise sword", clientId = 28552, buy = 262500, count = 500 },
+	{ itemName = "durable exercise axe", clientId = 35280, buy = 945000, count = 1800 },
+	{ itemName = "durable exercise bow", clientId = 35282, buy = 945000, count = 1800 },
+	{ itemName = "durable exercise club", clientId = 35281, buy = 945000, count = 1800 },
+	{ itemName = "durable exercise shield", clientId = 44066, buy = 945000, count = 1800 },
+	{ itemName = "durable exercise sword", clientId = 35279, buy = 945000, count = 1800 },
+	{ itemName = "lasting exercise axe", clientId = 35286, buy = 7560000, count = 14400 },
+	{ itemName = "lasting exercise bow", clientId = 35288, buy = 7560000, count = 14400 },
+	{ itemName = "lasting exercise club", clientId = 35287, buy = 7560000, count = 14400 },
+	{ itemName = "lasting exercise shield", clientId = 44067, buy = 7560000, count = 14400 },
+	{ itemName = "lasting exercise sword", clientId = 35285, buy = 7560000, count = 14400 },
 }
 -- On buy npc shop message
 npcType.onBuyItem = function(npc, player, itemId, subType, amount, ignore, inBackpacks, totalCost)
