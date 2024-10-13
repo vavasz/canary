@@ -78,7 +78,11 @@ function bakragoreIcon.onSay(player, words, param)
 	end
 
 	if param == "remove" then
-		player:removeIconBakragore()
+		for i = 1, 10 do
+			if player:hasCondition(CONDITION_BAKRAGORE, i) then
+				player:removeCondition(CONDITION_BAKRAGORE, i)
+			end
+		end
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Removed all Bakragore icons.")
 		return true
 	end

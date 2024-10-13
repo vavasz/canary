@@ -7,6 +7,8 @@
  * Website: https://docs.opentibiabr.com/
  */
 
+#include "pch.hpp"
+
 #include "creatures/npcs/npcs.hpp"
 #include "lua/functions/creatures/npc/npc_type_functions.hpp"
 #include "lua/scripts/scripts.hpp"
@@ -306,7 +308,7 @@ int NpcTypeFunctions::luaNpcTypeOutfit(lua_State* L) {
 			pushOutfit(L, npcType->info.outfit);
 		} else {
 			Outfit_t outfit = getOutfit(L, 2);
-			if (g_configManager().getBoolean(WARN_UNSAFE_SCRIPTS) && outfit.lookType != 0 && !g_game().isLookTypeRegistered(outfit.lookType)) {
+			if (g_configManager().getBoolean(WARN_UNSAFE_SCRIPTS, __FUNCTION__) && outfit.lookType != 0 && !g_game().isLookTypeRegistered(outfit.lookType)) {
 				g_logger().warn("[NpcTypeFunctions::luaNpcTypeOutfit] An unregistered creature looktype type with id '{}' was blocked to prevent client crash.", outfit.lookType);
 				lua_pushnil(L);
 			} else {

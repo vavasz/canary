@@ -1,4 +1,4 @@
-local callback = EventCallback("MonsterOnDropLootBoosted")
+local callback = EventCallback()
 
 function callback.monsterOnDropLoot(monster, corpse)
 	if not monster or not corpse then
@@ -22,7 +22,7 @@ function callback.monsterOnDropLoot(monster, corpse)
 
 	local factor = 1.0
 	local msgSuffix = " (boosted loot)"
-	corpse:addLoot(mType:generateLootRoll({ factor = factor, gut = false }, {}, player))
+	corpse:addLoot(mType:generateLootRoll({ factor = factor, gut = false }, {}))
 
 	local existingSuffix = corpse:getAttribute(ITEM_ATTRIBUTE_LOOTMESSAGE_SUFFIX) or ""
 	corpse:setAttribute(ITEM_ATTRIBUTE_LOOTMESSAGE_SUFFIX, existingSuffix .. msgSuffix)

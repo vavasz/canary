@@ -100,7 +100,7 @@ setmetatable(ZoneEvent, {
 
 function ZoneEvent:register()
 	if self.beforeEnter then
-		local beforeEnter = EventCallback("ZoneEventBeforeEnter", true)
+		local beforeEnter = EventCallback()
 		function beforeEnter.zoneBeforeCreatureEnter(zone, creature)
 			if zone ~= self.zone then
 				return true
@@ -112,7 +112,7 @@ function ZoneEvent:register()
 	end
 
 	if self.beforeLeave then
-		local beforeLeave = EventCallback("ZoneEventBeforeLeave", true)
+		local beforeLeave = EventCallback()
 		function beforeLeave.zoneBeforeCreatureLeave(zone, creature)
 			if zone ~= self.zone then
 				return true
@@ -124,7 +124,7 @@ function ZoneEvent:register()
 	end
 
 	if self.afterEnter then
-		local afterEnter = EventCallback("ZoneEventAfterEnter", true)
+		local afterEnter = EventCallback()
 		function afterEnter.zoneAfterCreatureEnter(zone, creature)
 			if zone ~= self.zone then
 				return true
@@ -136,7 +136,7 @@ function ZoneEvent:register()
 	end
 
 	if self.afterLeave then
-		local afterLeave = EventCallback("ZoneEventAfterLeave", true)
+		local afterLeave = EventCallback()
 		function afterLeave.zoneAfterCreatureLeave(zone, creature)
 			if zone ~= self.zone then
 				return true
@@ -148,7 +148,7 @@ function ZoneEvent:register()
 	end
 
 	if self.onSpawn then
-		local afterEnter = EventCallback("ZoneEventAfterEnterOnSpawn", true)
+		local afterEnter = EventCallback()
 		function afterEnter.zoneAfterCreatureEnter(zone, creature)
 			if zone ~= self.zone then
 				return true

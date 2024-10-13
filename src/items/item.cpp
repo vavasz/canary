@@ -7,6 +7,8 @@
  * Website: https://docs.opentibiabr.com/
  */
 
+#include "pch.hpp"
+
 #include "items/item.hpp"
 #include "items/containers/container.hpp"
 #include "items/decay/decay.hpp"
@@ -3158,17 +3160,16 @@ void Item::addUniqueId(uint16_t uniqueId) {
 }
 
 bool Item::canDecay() {
+	if (isRemoved() || isDecayDisabled()) {
+		return false;
+	}
+
 	const ItemType &it = Item::items[id];
-	if (it.decayTo < 0 || it.decayTime == 0 || isDecayDisabled()) {
+	if (it.decayTo < 0 || it.decayTime == 0) {
 		return false;
 	}
 
 	if (hasAttribute(ItemAttribute_t::UNIQUEID)) {
-		return false;
-	}
-
-	// In certain conditions, such as depth nested containers, this can overload the CPU, so it is left last.
-	if (isRemoved()) {
 		return false;
 	}
 

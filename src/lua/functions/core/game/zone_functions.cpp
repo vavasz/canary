@@ -1,12 +1,4 @@
-/**
- * Canary - A free and open-source MMORPG server emulator
- * Copyright (©) 2019-2024 OpenTibiaBR <opentibiabr@outlook.com>
- * Repository: https://github.com/opentibiabr/canary
- * License: https://github.com/opentibiabr/canary/blob/main/LICENSE
- * Contributors: https://github.com/opentibiabr/canary/graphs/contributors
- * Website: https://docs.opentibiabr.com/
- */
-
+#include "pch.hpp"
 #include "lua/functions/core/game/zone_functions.hpp"
 #include "game/zones/zone.hpp"
 #include "game/game.hpp"
@@ -144,7 +136,7 @@ int ZoneFunctions::luaZoneGetCreatures(lua_State* L) {
 	for (auto creature : creatures) {
 		index++;
 		pushUserdata<Creature>(L, creature);
-		setCreatureMetatable(L, -1, creature);
+		setMetatable(L, -1, "Creature");
 		lua_rawseti(L, -2, index);
 	}
 	return 1;

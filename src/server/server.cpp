@@ -7,6 +7,8 @@
  * Website: https://docs.opentibiabr.com/
  */
 
+#include "pch.hpp"
+
 #include "server/network/message/outputmessage.hpp"
 #include "server/server.hpp"
 #include "config/configmanager.hpp"
@@ -151,8 +153,8 @@ void ServicePort::open(uint16_t port) {
 	pendingStart = false;
 
 	try {
-		if (g_configManager().getBoolean(BIND_ONLY_GLOBAL_ADDRESS)) {
-			acceptor.reset(new asio::ip::tcp::acceptor(io_service, asio::ip::tcp::endpoint(asio::ip::address(asio::ip::address_v4::from_string(g_configManager().getString(IP))), serverPort)));
+		if (g_configManager().getBoolean(BIND_ONLY_GLOBAL_ADDRESS, __FUNCTION__)) {
+			acceptor.reset(new asio::ip::tcp::acceptor(io_service, asio::ip::tcp::endpoint(asio::ip::address(asio::ip::address_v4::from_string(g_configManager().getString(IP, __FUNCTION__))), serverPort)));
 		} else {
 			acceptor.reset(new asio::ip::tcp::acceptor(io_service, asio::ip::tcp::endpoint(asio::ip::address(asio::ip::address_v4(INADDR_ANY)), serverPort)));
 		}

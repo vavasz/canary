@@ -29,22 +29,22 @@ lever:register()
 config = {
 	boss = {
 		name = "psiquiatra farmer",
-		position = Position(550, 1241, 0),
+		position = Position(552, 1241, 0),
 	},
 	timeAfterKill = 60,
 	playerPositions = {
-		{ pos = Position(562, 1269, 0), teleport = Position(545, 1245, 0) },
-		{ pos = Position(561, 1269, 0), teleport = Position(545, 1245, 0) },
-		{ pos = Position(560, 1269, 0), teleport = Position(545, 1245, 0) },
-		{ pos = Position(559, 1269, 0), teleport = Position(545, 1245, 0) },
-		{ pos = Position(558, 1269, 0), teleport = Position(545, 1245, 0) },
+		{ pos = Position(562, 1269, 0), teleport = Position(549, 1245, 0) },
+		{ pos = Position(561, 1269, 0), teleport = Position(549, 1245, 0) },
+		{ pos = Position(560, 1269, 0), teleport = Position(549, 1245, 0) },
+		{ pos = Position(559, 1269, 0), teleport = Position(549, 1245, 0) },
+		{ pos = Position(558, 1269, 0), teleport = Position(549, 1245, 0) },
 	},
 	specPos = {
-		from = Position(541, 1232, 0),
-		to = Position(559, 1251, 0),
+		from = Position(543, 1232, 0),
+		to = Position(561, 1251, 0),
 	},
 	exit = Position(558, 1272, 0),
-	exitTeleporter = Position(542, 1241, 0),
+	exitTeleporter = Position(544, 1241, 0),
 }
 
 
@@ -55,22 +55,22 @@ lever:register()
 config = {
 	boss = {
 		name = "vavasz",
-		position = Position(568, 1241, 0),
+		position = Position(572, 1241, 0),
 	},
 	timeAfterKill = 60,
 	playerPositions = {
-		{ pos = Position(562, 1304, 0), teleport = Position(563, 1245, 0) },
-		{ pos = Position(561, 1304, 0), teleport = Position(563, 1245, 0) },
-		{ pos = Position(560, 1304, 0), teleport = Position(563, 1245, 0) },
-		{ pos = Position(559, 1304, 0), teleport = Position(563, 1245, 0) },
-		{ pos = Position(558, 1304, 0), teleport = Position(563, 1245, 0) },
+		{ pos = Position(562, 1304, 0), teleport = Position(569, 1245, 0) },
+		{ pos = Position(561, 1304, 0), teleport = Position(569, 1245, 0) },
+		{ pos = Position(560, 1304, 0), teleport = Position(569, 1245, 0) },
+		{ pos = Position(559, 1304, 0), teleport = Position(569, 1245, 0) },
+		{ pos = Position(558, 1304, 0), teleport = Position(569, 1245, 0) },
 	},
 	specPos = {
-		from = Position(559, 1232, 0),
-		to = Position(577, 1250, 0),
+		from = Position(563, 1232, 0),
+		to = Position(581, 1250, 0),
 	},
 	exit = Position(559, 1302, 0),
-	exitTeleporter = Position(568, 1233, 0),
+	exitTeleporter = Position(572, 1233, 0),
 }
 
 
@@ -82,22 +82,22 @@ lever:register()
 config = {
 	boss = {
 		name = "ademiro",
-		position = Position(586, 1241, 0),
+		position = Position(592, 1241, 0),
 	},
 	timeAfterKill = 60,
 	playerPositions = {
-		{ pos = Position(609, 1286, 1), teleport = Position(581, 1245, 0) },
-		{ pos = Position(608, 1286, 1), teleport = Position(581, 1245, 0) },
-		{ pos = Position(607, 1286, 1), teleport = Position(581, 1245, 0) },
-		{ pos = Position(606, 1286, 1), teleport = Position(581, 1245, 0) },
-		{ pos = Position(605, 1286, 1), teleport = Position(581, 1245, 0) },
+		{ pos = Position(609, 1286, 1), teleport = Position(589, 1245, 0) },
+		{ pos = Position(608, 1286, 1), teleport = Position(589, 1245, 0) },
+		{ pos = Position(607, 1286, 1), teleport = Position(589, 1245, 0) },
+		{ pos = Position(606, 1286, 1), teleport = Position(589, 1245, 0) },
+		{ pos = Position(605, 1286, 1), teleport = Position(589, 1245, 0) },
 	},
 	specPos = {
-		from = Position(577, 1232, 0),
-		to = Position(596, 1252, 0),
+		from = Position(583, 1232, 0),
+		to = Position(601, 1252, 0),
 	},
 	exit = Position(606, 1283, 1),
-	exitTeleporter = Position(594, 1241, 0),
+	exitTeleporter = Position(600, 1241, 0),
 }
 
 

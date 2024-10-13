@@ -7,6 +7,8 @@
  * Website: https://docs.opentibiabr.com/
  */
 
+#include "pch.hpp"
+
 #include "lua/creature/actions.hpp"
 #include "lua/functions/events/action_functions.hpp"
 #include "game/game.hpp"

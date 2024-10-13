@@ -7,6 +7,8 @@
  * Website: https://docs.opentibiabr.com/
  */
 
+#include "pch.hpp"
+
 #include "config/configmanager.hpp"
 #include "database/database.hpp"
 #include "security/argon.hpp"
@@ -18,37 +20,24 @@ Argon2::Argon2() {
 }
 
 void Argon2::updateConstants() {
-	m_const_str = g_configManager().getString(M_CONST);
+	m_const_str = g_configManager().getString(M_CONST, __FUNCTION__);
 	m_cost = parseBitShift(m_const_str);
-	t_cost = g_configManager().getNumber(T_CONST);
-	parallelism = g_configManager().getNumber(PARALLELISM);
+	t_cost = g_configManager().getNumber(T_CONST, __FUNCTION__);
+	parallelism = g_configManager().getNumber(PARALLELISM, __FUNCTION__);
 }
 
 uint32_t Argon2::parseBitShift(const std::string &bitShiftStr) const {
-	static const std::regex pattern(R"(^\s*(\d+)\s*<<\s*(\d+)\s*$)");
-	std::smatch match;
+	std::stringstream ss(bitShiftStr);
+	int base;
+	int shift;
+	char op1;
+	char op2;
 
-	if (!std::regex_match(bitShiftStr, match, pattern)) {
-		g_logger().warn("Invalid bit shift string format: '{}'", bitShiftStr);
-		return 0;
+	if (!(ss >> base >> op1 >> op2 >> shift) || op1 != '<' || op2 != '<') {
+		g_logger().warn("Invalid bit shift string");
 	}
 
-	int base = 0;
-	int shift = 0;
-	try {
-		base = std::stoi(match[1].str());
-		shift = std::stoi(match[2].str());
-	} catch (const std::exception &e) {
-		g_logger().warn("Error parsing bit shift string: '{}'", e.what());
-		return 0;
-	}
-
-	if (shift < 0 || shift >= 32) {
-		g_logger().warn("Shift value out of bounds: '{}'", shift);
-		return 0;
-	}
-
-	return static_cast<uint32_t>(base) << shift;
+	return base << shift;
 }
 
 bool Argon2::verifyPassword(const std::string &password, const std::string &phash) const {

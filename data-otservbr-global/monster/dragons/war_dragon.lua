@@ -23,7 +23,7 @@ monster.Bestiary = {
 	CharmsPoints = 50,
 	Stars = 5,
 	Occurrence = 0,
-	Locations = "Nimmersatt's Breeding Ground",
+	Locations = "nimmerset",
 }
 
 monster.health = 6960

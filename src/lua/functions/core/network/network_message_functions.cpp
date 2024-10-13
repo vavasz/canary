@@ -7,6 +7,8 @@
  * Website: https://docs.opentibiabr.com/
  */
 
+#include "pch.hpp"
+
 #include "lua/functions/core/network/network_message_functions.hpp"
 #include "creatures/players/player.hpp"
 #include "server/network/protocol/protocolstatus.hpp"
@@ -194,7 +196,7 @@ int NetworkMessageFunctions::luaNetworkMessageAddString(lua_State* L) {
 	const std::string &function = getString(L, 3);
 	const auto &message = getUserdataShared<NetworkMessage>(L, 1);
 	if (message) {
-		message->addString(string, std::source_location::current(), function);
+		message->addString(string, function);
 		pushBoolean(L, true);
 	} else {
 		lua_pushnil(L);

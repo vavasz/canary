@@ -9,19 +9,13 @@
 
 #pragma once
 
-#include "server/server_definitions.hpp"
-
-class OutputMessage;
-using OutputMessage_ptr = std::shared_ptr<OutputMessage>;
-class Connection;
-using Connection_ptr = std::shared_ptr<Connection>;
-using ConnectionWeak_ptr = std::weak_ptr<Connection>;
-
-class NetworkMessage;
+#include "server/network/connection/connection.hpp"
+#include "config/configmanager.hpp"
 
 class Protocol : public std::enable_shared_from_this<Protocol> {
 public:
-	explicit Protocol(Connection_ptr initConnection);
+	explicit Protocol(Connection_ptr initConnection) :
+		connectionPtr(initConnection) { }
 
 	virtual ~Protocol() = default;
 
@@ -37,9 +31,13 @@ public:
 	virtual void onRecvFirstMessage(NetworkMessage &msg) = 0;
 	virtual void onConnect() { }
 
-	bool isConnectionExpired() const;
+	bool isConnectionExpired() const {
+		return connectionPtr.expired();
+	}
 
-	Connection_ptr getConnection() const;
+	Connection_ptr getConnection() const {
+		return connectionPtr.lock();
+	}
 
 	uint32_t getIP() const;
 
@@ -50,10 +48,19 @@ public:
 		return outputBuffer;
 	}
 
-	void send(OutputMessage_ptr msg) const;
+	void send(OutputMessage_ptr msg) const {
+		if (auto connection = getConnection();
+		    connection != nullptr) {
+			connection->send(msg);
+		}
+	}
 
 protected:
-	void disconnect() const;
+	void disconnect() const {
+		if (auto connection = getConnection()) {
+			connection->close();
+		}
+	}
 
 	void enableXTEAEncryption() {
 		encryptionEnabled = true;
@@ -75,7 +82,22 @@ protected:
 
 private:
 	struct ZStream {
-		ZStream() noexcept;
+		ZStream() noexcept {
+			const int32_t compressionLevel = g_configManager().getNumber(COMPRESSION_LEVEL, __FUNCTION__);
+			if (compressionLevel <= 0) {
+				return;
+			}
+
+			stream = std::make_unique<z_stream>();
+			stream->zalloc = nullptr;
+			stream->zfree = nullptr;
+			stream->opaque = nullptr;
+
+			if (deflateInit2(stream.get(), compressionLevel, Z_DEFLATED, -15, 9, Z_DEFAULT_STRATEGY) != Z_OK) {
+				stream.reset();
+				g_logger().error("[Protocol::enableCompression()] - Zlib deflateInit2 error: {}", (stream->msg ? stream->msg : " unknown error"));
+			}
+		}
 
 		~ZStream() {
 			deflateEnd(stream.get());

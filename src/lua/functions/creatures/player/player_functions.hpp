@@ -364,6 +364,9 @@ private:
 		registerMethod(L, "Player", "addAchievementPoints", PlayerFunctions::luaPlayerAddAchievementPoints);
 		registerMethod(L, "Player", "removeAchievementPoints", PlayerFunctions::luaPlayerRemoveAchievementPoints);
 
+		// Drop Connection
+		registerMethod(L, "Player", "dropConnection", PlayerFunctions::luaPlayerDropConnection);
+
 		// Badge Functions
 		registerMethod(L, "Player", "addBadge", PlayerFunctions::luaPlayerAddBadge);
 
@@ -376,9 +379,8 @@ private:
 		registerMethod(L, "Player", "createTransactionSummary", PlayerFunctions::luaPlayerCreateTransactionSummary);
 
 		registerMethod(L, "Player", "takeScreenshot", PlayerFunctions::luaPlayerTakeScreenshot);
+
 		registerMethod(L, "Player", "sendIconBakragore", PlayerFunctions::luaPlayerSendIconBakragore);
-		registerMethod(L, "Player", "removeIconBakragore", PlayerFunctions::luaPlayerRemoveIconBakragore);
-		registerMethod(L, "Player", "sendCreatureAppear", PlayerFunctions::luaPlayerSendCreatureAppear);
 
 		GroupFunctions::init(L);
 		GuildFunctions::init(L);
@@ -734,6 +736,8 @@ private:
 	static int luaPlayerAddAchievementPoints(lua_State* L);
 	static int luaPlayerRemoveAchievementPoints(lua_State* L);
 
+	static int luaPlayerDropConnection(lua_State* L);
+
 	static int luaPlayerAddBadge(lua_State* L);
 
 	static int luaPlayerAddTitle(lua_State* L);
@@ -744,9 +748,6 @@ private:
 
 	static int luaPlayerTakeScreenshot(lua_State* L);
 	static int luaPlayerSendIconBakragore(lua_State* L);
-	static int luaPlayerRemoveIconBakragore(lua_State* L);
-
-	static int luaPlayerSendCreatureAppear(lua_State* L);
 
 	friend class CreatureFunctions;
 };

@@ -68,8 +68,7 @@ local function addMissionKeyword(text, value, newValue, addItem)
 		end
 
 		if addItem then
-			player:addItem(268, 5)
-			player:addItem(266, 5)
+			player:addItem(892, 1)
 		end
 	end)
 end

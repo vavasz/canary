@@ -97,16 +97,16 @@ function Player.getCookiesDelivered(self)
 
 	local storage, amount =
 		{
-			Storage.Quest.U8_1.WhatAFoolishQuest.CookieDelivery.SimonTheBeggar,
-			Storage.Quest.U8_1.WhatAFoolishQuest.CookieDelivery.Markwin,
-			Storage.Quest.U8_1.WhatAFoolishQuest.CookieDelivery.Ariella,
-			Storage.Quest.U8_1.WhatAFoolishQuest.CookieDelivery.Hairycles,
-			Storage.Quest.U8_1.WhatAFoolishQuest.CookieDelivery.Djinn,
-			Storage.Quest.U8_1.WhatAFoolishQuest.CookieDelivery.AvarTar,
-			Storage.Quest.U8_1.WhatAFoolishQuest.CookieDelivery.OrcKing,
-			Storage.Quest.U8_1.WhatAFoolishQuest.CookieDelivery.Lorbas,
-			Storage.Quest.U8_1.WhatAFoolishQuest.CookieDelivery.Wyda,
-			Storage.Quest.U8_1.WhatAFoolishQuest.CookieDelivery.Hjaern,
+			Storage.WhatAFoolish.CookieDelivery.SimonTheBeggar,
+			Storage.WhatAFoolish.CookieDelivery.Markwin,
+			Storage.WhatAFoolish.CookieDelivery.Ariella,
+			Storage.WhatAFoolish.CookieDelivery.Hairycles,
+			Storage.WhatAFoolish.CookieDelivery.Djinn,
+			Storage.WhatAFoolish.CookieDelivery.AvarTar,
+			Storage.WhatAFoolish.CookieDelivery.OrcKing,
+			Storage.WhatAFoolish.CookieDelivery.Lorbas,
+			Storage.WhatAFoolish.CookieDelivery.Wyda,
+			Storage.WhatAFoolish.CookieDelivery.Hjaern,
 		}, 0
 	for i = 1, #storage do
 		if self:getStorageValue(storage[i]) == 1 then
@@ -121,24 +121,24 @@ function Player.checkGnomeRank(self)
 		return true
 	end
 
-	local points = self:getStorageValue(Storage.Quest.U9_60.BigfootsBurden.Rank)
-	local questProgress = self:getStorageValue(Storage.Quest.U9_60.BigfootsBurden.QuestLine)
+	local points = self:getStorageValue(Storage.BigfootBurden.Rank)
+	local questProgress = self:getStorageValue(Storage.BigfootBurden.QuestLine)
 	if points >= 30 and points < 120 then
 		if questProgress <= 25 then
-			self:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.QuestLine, 26)
+			self:setStorageValue(Storage.BigfootBurden.QuestLine, 26)
 			self:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
 			self:addAchievement("Gnome Little Helper")
 		end
 	elseif points >= 120 and points < 480 then
 		if questProgress <= 26 then
-			self:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.QuestLine, 27)
+			self:setStorageValue(Storage.BigfootBurden.QuestLine, 27)
 			self:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
 			self:addAchievement("Gnome Little Helper")
 			self:addAchievement("Gnome Friend")
 		end
 	elseif points >= 480 and points < 1440 then
 		if questProgress <= 27 then
-			self:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.QuestLine, 28)
+			self:setStorageValue(Storage.BigfootBurden.QuestLine, 28)
 			self:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
 			self:addAchievement("Gnome Little Helper")
 			self:addAchievement("Gnome Friend")
@@ -146,7 +146,7 @@ function Player.checkGnomeRank(self)
 		end
 	elseif points >= 1440 then
 		if questProgress <= 29 then
-			self:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.QuestLine, 30)
+			self:setStorageValue(Storage.BigfootBurden.QuestLine, 30)
 			self:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
 			self:addAchievement("Gnome Little Helper")
 			self:addAchievement("Gnome Friend")
@@ -198,30 +198,43 @@ function Player.withdrawMoney(self, amount)
 	return Bank.withdraw(self, amount)
 end
 
-function Player.removeMoneyBank(self, amount)
-	local inventoryMoney = self:getMoney()
-	local bankBalance = self:getBankBalance()
+-- player:removeMoneyBank(money)
+function Player:removeMoneyBank(amount)
+	if type(amount) == "string" then
+		amount = tonumber(amount)
+	end
 
-	if amount <= inventoryMoney then
+	local moneyCount = self:getMoney()
+	local bankCount = self:getBankBalance()
+
+	-- The player have all the money with him
+	if amount <= moneyCount then
+		-- Removes player inventory money
 		self:removeMoney(amount)
+
 		if amount > 0 then
 			self:sendTextMessage(MESSAGE_TRADE, ("Paid %d gold from inventory."):format(amount))
 		end
 		return true
-	end
 
-	if amount <= (inventoryMoney + bankBalance) then
-		local remainingAmount = amount
+		-- The player doens't have all the money with him
+	elseif amount <= (moneyCount + bankCount) then
+		-- Check if the player has some money
+		if moneyCount ~= 0 then
+			-- Removes player inventory money
+			self:removeMoney(moneyCount)
+			local remains = amount - moneyCount
 
-		if inventoryMoney > 0 then
-			self:removeMoney(inventoryMoney)
-			remainingAmount = remainingAmount - inventoryMoney
+			-- Removes player bank money
+			Bank.debit(self, remains)
+
+			if amount > 0 then
+				self:sendTextMessage(MESSAGE_TRADE, ("Paid %s from inventory and %s gold from bank account. Your account balance is now %s gold."):format(FormatNumber(moneyCount), FormatNumber(amount - moneyCount), FormatNumber(self:getBankBalance())))
+			end
+			return true
 		end
-
-		Bank.debit(self, remainingAmount)
-
-		self:setBankBalance(bankBalance - remainingAmount)
-		self:sendTextMessage(MESSAGE_TRADE, ("Paid %s from inventory and %s gold from bank account. Your account balance is now %s gold."):format(FormatNumber(amount - remainingAmount), FormatNumber(remainingAmount), FormatNumber(self:getBankBalance())))
+		self:setBankBalance(bankCount - amount)
+		self:sendTextMessage(MESSAGE_TRADE, ("Paid %s gold from bank account. Your account balance is now %s gold."):format(FormatNumber(amount), FormatNumber(self:getBankBalance())))
 		return true
 	end
 	return false

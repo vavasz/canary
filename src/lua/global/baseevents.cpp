@@ -7,6 +7,8 @@
  * Website: https://docs.opentibiabr.com/
  */
 
+#include "pch.hpp"
+
 #include "lua/global/baseevents.hpp"
 #include "lua/scripts/lua_environment.hpp"
 #include "utils/tools.hpp"
@@ -18,7 +20,7 @@ bool BaseEvents::loadFromXml() {
 	}
 
 	std::string scriptsName = getScriptBaseName();
-	std::string basePath = g_configManager().getString(CORE_DIRECTORY) + "/" + scriptsName + "/";
+	std::string basePath = g_configManager().getString(CORE_DIRECTORY, __FUNCTION__) + "/" + scriptsName + "/";
 	if (getScriptInterface().loadFile(
 			basePath + "lib/" + scriptsName + ".lua",
 			scriptsName + ".lua"

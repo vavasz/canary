@@ -9,8 +9,6 @@
 
 #pragma once
 
-#include "utils/const.hpp"
-
 // Enums
 // Connection and networkmessage.
 enum { FORCE_CLOSE = true };

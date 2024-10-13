@@ -7,6 +7,8 @@
  * Website: https://docs.opentibiabr.com/
  */
 
+#include "pch.hpp"
+
 #include "server/network/protocol/protocollogin.hpp"
 #include "server/network/message/outputmessage.hpp"
 #include "game/scheduling/dispatcher.hpp"
@@ -21,7 +23,7 @@ void ProtocolLogin::disconnectClient(const std::string &message) {
 	auto output = OutputMessagePool::getOutputMessage();
 
 	output->addByte(0x0B);
-	output->addString(message);
+	output->addString(message, "ProtocolLogin::disconnectClient - message");
 	send(output);
 
 	disconnect();
@@ -31,7 +33,7 @@ void ProtocolLogin::getCharacterList(const std::string &accountDescriptor, const
 	Account account(accountDescriptor);
 	account.setProtocolCompat(oldProtocol);
 
-	if (oldProtocol && !g_configManager().getBoolean(OLD_PROTOCOL)) {
+	if (oldProtocol && !g_configManager().getBoolean(OLD_PROTOCOL, __FUNCTION__)) {
 		disconnectClient(fmt::format("Only protocol version {}.{} is allowed.", CLIENT_VERSION_UPPER, CLIENT_VERSION_LOWER));
 		return;
 	} else if (!oldProtocol) {
@@ -47,7 +49,7 @@ void ProtocolLogin::getCharacterList(const std::string &accountDescriptor, const
 	}
 
 	auto output = OutputMessagePool::getOutputMessage();
-	const std::string &motd = g_configManager().getString(SERVER_MOTD);
+	const std::string &motd = g_configManager().getString(SERVER_MOTD, __FUNCTION__);
 	if (!motd.empty()) {
 		// Add MOTD
 		output->addByte(0x14);
@@ -55,12 +57,12 @@ void ProtocolLogin::getCharacterList(const std::string &accountDescriptor, const
 		std::ostringstream ss;
 		ss << g_game().getMotdNum() << "\n"
 		   << motd;
-		output->addString(ss.str());
+		output->addString(ss.str(), "ProtocolLogin::getCharacterList - ss.str()");
 	}
 
 	// Add session key
 	output->addByte(0x28);
-	output->addString(accountDescriptor + "\n" + password);
+	output->addString(accountDescriptor + "\n" + password, "ProtocolLogin::getCharacterList - accountDescriptor + password");
 
 	// Add char list
 	auto [players, result] = account.getAccountPlayers();
@@ -73,10 +75,10 @@ void ProtocolLogin::getCharacterList(const std::string &accountDescriptor, const
 	output->addByte(1); // number of worlds
 
 	output->addByte(0); // world id
-	output->addString(g_configManager().getString(SERVER_NAME));
-	output->addString(g_configManager().getString(IP));
+	output->addString(g_configManager().getString(SERVER_NAME, __FUNCTION__), "ProtocolLogin::getCharacterList - _configManager().getString(SERVER_NAME)");
+	output->addString(g_configManager().getString(IP, __FUNCTION__), "ProtocolLogin::getCharacterList - g_configManager().getString(IP)");
 
-	output->add<uint16_t>(g_configManager().getNumber(GAME_PORT));
+	output->add<uint16_t>(g_configManager().getNumber(GAME_PORT, __FUNCTION__));
 
 	output->addByte(0);
 
@@ -84,7 +86,7 @@ void ProtocolLogin::getCharacterList(const std::string &accountDescriptor, const
 	output->addByte(size);
 	for (const auto &[name, deletion] : players) {
 		output->addByte(0);
-		output->addString(name);
+		output->addString(name, "ProtocolLogin::getCharacterList - name");
 	}
 
 	// Get premium days, check is premium and get lastday
@@ -172,10 +174,8 @@ void ProtocolLogin::onRecvFirstMessage(NetworkMessage &msg) {
 		return;
 	}
 
-	g_dispatcher().addEvent(
-		[self = std::static_pointer_cast<ProtocolLogin>(shared_from_this()), accountDescriptor, password] {
-			self->getCharacterList(accountDescriptor, password);
-		},
-		__FUNCTION__
-	);
+	g_dispatcher().addEvent([self = std::static_pointer_cast<ProtocolLogin>(shared_from_this()), accountDescriptor, password] {
+		self->getCharacterList(accountDescriptor, password);
+	},
+	                        "ProtocolLogin::getCharacterList");
 }

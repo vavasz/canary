@@ -7,6 +7,8 @@
  * Website: https://docs.opentibiabr.com/
  */
 
+#include "pch.hpp"
+
 #include "lua/functions/creatures/player/player_functions.hpp"
 
 #include "creatures/combat/spells.hpp"
@@ -1864,8 +1866,6 @@ int PlayerFunctions::luaPlayerAddItem(lua_State* L) {
 			if (!hasTable) {
 				lua_pushnil(L);
 			}
-
-			player->sendCancelMessage(ret);
 			return 1;
 		}
 
@@ -2272,23 +2272,10 @@ int PlayerFunctions::luaPlayerGetParty(lua_State* L) {
 }
 
 int PlayerFunctions::luaPlayerAddOutfit(lua_State* L) {
-	// player:addOutfit(lookType or name, addon = 0)
+	// player:addOutfit(lookType)
 	std::shared_ptr<Player> player = getUserdataShared<Player>(L, 1);
 	if (player) {
-		auto addon = getNumber<uint8_t>(L, 3, 0);
-		if (lua_isnumber(L, 2)) {
-			player->addOutfit(getNumber<uint16_t>(L, 2), addon);
-		} else if (lua_isstring(L, 2)) {
-			const std::string &outfitName = getString(L, 2);
-			const auto &outfit = Outfits::getInstance().getOutfitByName(player->getSex(), outfitName);
-			if (!outfit) {
-				reportErrorFunc("Outfit not found");
-				return 1;
-			}
-
-			player->addOutfit(outfit->lookType, addon);
-		}
-
+		player->addOutfit(getNumber<uint16_t>(L, 2), 0);
 		pushBoolean(L, true);
 	} else {
 		lua_pushnil(L);
@@ -4237,12 +4224,8 @@ int PlayerFunctions::luaPlayerAddAchievement(lua_State* L) {
 		achievementId = g_game().getAchievementByName(getString(L, 2)).id;
 	}
 
-	bool success = player->achiev()->add(achievementId, getBoolean(L, 3, true));
-	if (success) {
-		player->sendTakeScreenshot(SCREENSHOT_TYPE_ACHIEVEMENT);
-	}
-
-	pushBoolean(L, success);
+	player->sendTakeScreenshot(SCREENSHOT_TYPE_ACHIEVEMENT);
+	pushBoolean(L, player->achiev()->add(achievementId, getBoolean(L, 3, true)));
 	return 1;
 }
 
@@ -4425,35 +4408,16 @@ int PlayerFunctions::luaPlayerSendIconBakragore(lua_State* L) {
 	pushBoolean(L, true);
 	return 1;
 }
-
-int PlayerFunctions::luaPlayerRemoveIconBakragore(lua_State* L) {
-	// player:removeIconBakragore(iconType or nil for remove all bakragore icons)
+// Connection Drop - FPS Command
+int PlayerFunctions::luaPlayerDropConnection(lua_State* L) {
+	// player:dropConnection()
 	const auto &player = getUserdataShared<Player>(L, 1);
 	if (!player) {
-		lua_pushnil(L);
-		return 1;
-	}
-
-	auto iconType = getNumber<IconBakragore>(L, 2, IconBakragore::None);
-	if (iconType == IconBakragore::None) {
-		player->removeBakragoreIcons();
-	} else {
-		player->removeBakragoreIcon(iconType);
-	}
-
-	pushBoolean(L, true);
-	return 1;
-}
-
-int PlayerFunctions::luaPlayerSendCreatureAppear(lua_State* L) {
-	auto player = getUserdataShared<Player>(L, 1);
-	if (!player) {
 		reportErrorFunc(getErrorDesc(LUA_ERROR_PLAYER_NOT_FOUND));
+		pushBoolean(L, false);
 		return 1;
 	}
-
-	bool isLogin = getBoolean(L, 2, false);
-	player->sendCreatureAppear(player, player->getPosition(), isLogin);
+	player->disconnect();
 	pushBoolean(L, true);
 	return 1;
 }

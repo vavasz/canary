@@ -19,7 +19,16 @@
 #include <iterator>
 #include <type_traits>
 
-#include "kv/kv_definitions.hpp"
+class ValueWrapper;
+
+using StringType = std::string;
+using BooleanType = bool;
+using IntType = int;
+using DoubleType = double;
+using ArrayType = std::vector<ValueWrapper>;
+using MapType = phmap::flat_hash_map<std::string, std::shared_ptr<ValueWrapper>>;
+
+using ValueVariant = std::variant<StringType, BooleanType, IntType, DoubleType, ArrayType, MapType>;
 
 class ValueWrapper {
 public:

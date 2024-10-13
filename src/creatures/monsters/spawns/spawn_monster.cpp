@@ -7,6 +7,8 @@
  * Website: https://docs.opentibiabr.com/
  */
 
+#include "pch.hpp"
+
 #include "creatures/monsters/spawns/spawn_monster.hpp"
 #include "game/game.hpp"
 #include "creatures/monsters/monster.hpp"
@@ -91,7 +93,7 @@ bool SpawnsMonster::loadFromXML(const std::string &filemonstername) {
 					weight = pugi::cast<uint32_t>(weightAttribute.value());
 				}
 
-				uint32_t scheduleInterval = g_configManager().getNumber(DEFAULT_RESPAWN_TIME);
+				uint32_t scheduleInterval = g_configManager().getNumber(DEFAULT_RESPAWN_TIME, __FUNCTION__);
 
 				try {
 					scheduleInterval = pugi::cast<uint32_t>(childMonsterNode.attribute("spawntime").value());
@@ -175,7 +177,7 @@ bool SpawnMonster::spawnMonster(uint32_t spawnMonsterId, spawnBlock_t &sb, const
 			return false;
 		}
 	} else {
-		g_logger().trace("[SpawnMonster] Spawning {} at {}", monsterType->name, sb.pos.toString());
+		g_logger().debug("[SpawnMonster] Spawning {} at {}", monsterType->name, sb.pos.toString());
 		if (!g_game().placeCreature(monster, sb.pos, false, true)) {
 			return false;
 		}
@@ -188,13 +190,12 @@ bool SpawnMonster::spawnMonster(uint32_t spawnMonsterId, spawnBlock_t &sb, const
 	spawnedMonsterMap[spawnMonsterId] = monster;
 	sb.lastSpawn = OTSYS_TIME();
 	g_events().eventMonsterOnSpawn(monster, sb.pos);
-	monster->onSpawn();
 	g_callbacks().executeCallback(EventCallback_t::monsterOnSpawn, &EventCallback::monsterOnSpawn, monster, sb.pos);
 	return true;
 }
 
 void SpawnMonster::startup(bool delayed) {
-	if (g_configManager().getBoolean(RANDOM_MONSTER_SPAWN)) {
+	if (g_configManager().getBoolean(RANDOM_MONSTER_SPAWN, __FUNCTION__)) {
 		for (auto it = spawnMonsterMap.begin(); it != spawnMonsterMap.end(); ++it) {
 			auto &[spawnMonsterId, sb] = *it;
 			for (auto &[monsterType, weight] : sb.monsterTypes) {
@@ -224,7 +225,7 @@ void SpawnMonster::startup(bool delayed) {
 			continue;
 		}
 		if (delayed) {
-			g_dispatcher().addEvent([this, spawnMonsterId, &sb, mType] { scheduleSpawn(spawnMonsterId, sb, mType, 0, true); }, __FUNCTION__);
+			g_dispatcher().addEvent([this, spawnMonsterId, &sb, mType] { scheduleSpawn(spawnMonsterId, sb, mType, 0, true); }, "SpawnMonster::startup");
 		} else {
 			scheduleSpawn(spawnMonsterId, sb, mType, 0, true);
 		}
@@ -315,7 +316,7 @@ bool SpawnMonster::addMonster(const std::string &name, const Position &pos, Dire
 		boostedrate = 2;
 	}
 	// eventschedule is a whole percentage, so we need to multiply by 100 to match the order of magnitude of the other values
-	scheduleInterval = scheduleInterval * 100 / std::max((uint32_t)1, (g_configManager().getNumber(RATE_SPAWN) * boostedrate * eventschedule));
+	scheduleInterval = scheduleInterval * 100 / std::max((uint32_t)1, (g_configManager().getNumber(RATE_SPAWN, __FUNCTION__) * boostedrate * eventschedule));
 	if (scheduleInterval < MONSTER_MINSPAWN_INTERVAL) {
 		g_logger().warn("[SpawnsMonster::addMonster] - {} {} spawntime cannot be less than {} seconds, set to {} by default.", name, pos.toString(), MONSTER_MINSPAWN_INTERVAL / 1000, MONSTER_MINSPAWN_INTERVAL / 1000);
 		scheduleInterval = MONSTER_MINSPAWN_INTERVAL;

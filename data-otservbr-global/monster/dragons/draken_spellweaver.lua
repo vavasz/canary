@@ -93,7 +93,7 @@ monster.loot = {
 	{ name = "zaoan robe", chance = 370 },
 	{ name = "ring of the sky", chance = 180 },
 	{ name = "bamboo leaves", chance = 180 },
-	{ name = "harness", chance = 30 },
+	{ name = "harness", chance = 300 },
 	{ name = "draken trophy", chance = 10 },
 }
 

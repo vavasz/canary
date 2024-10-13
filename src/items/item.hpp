@@ -428,7 +428,7 @@ public:
 	std::vector<std::shared_ptr<AugmentInfo>> getAugments() const {
 		return items[id].augments;
 	}
-	std::vector<std::shared_ptr<AugmentInfo>> getAugmentsBySpellNameAndType(const std::string &spellName, Augment_t augmentType) const {
+	std::vector<std::shared_ptr<AugmentInfo>> getAugmentsBySpellNameAndType(std::string spellName, Augment_t augmentType) const {
 		std::vector<std::shared_ptr<AugmentInfo>> augments;
 		for (auto &augment : items[id].augments) {
 			if (strcasecmp(augment->spellName.c_str(), spellName.c_str()) == 0 && augment->type == augmentType) {
@@ -438,7 +438,7 @@ public:
 
 		return augments;
 	}
-	std::vector<std::shared_ptr<AugmentInfo>> getAugmentsBySpellName(const std::string &spellName) const {
+	std::vector<std::shared_ptr<AugmentInfo>> getAugmentsBySpellName(std::string spellName) const {
 		std::vector<std::shared_ptr<AugmentInfo>> augments;
 		for (auto &augment : items[id].augments) {
 			if (strcasecmp(augment->spellName.c_str(), spellName.c_str()) == 0) {
@@ -597,11 +597,7 @@ public:
 		count = n;
 	}
 
-	static uint32_t countByType(const std::shared_ptr<Item> &item, int32_t subType) {
-		if (!item) {
-			return 0;
-		}
-
+	static uint32_t countByType(std::shared_ptr<Item> item, int32_t subType) {
 		if (subType == -1 || subType == item->getSubType()) {
 			return item->getItemCount();
 		}
@@ -719,9 +715,9 @@ public:
 			return 0;
 		}
 		return quadraticPoly(
-			g_configManager().getFloat(RUSE_CHANCE_FORMULA_A),
-			g_configManager().getFloat(RUSE_CHANCE_FORMULA_B),
-			g_configManager().getFloat(RUSE_CHANCE_FORMULA_C),
+			g_configManager().getFloat(RUSE_CHANCE_FORMULA_A, __FUNCTION__),
+			g_configManager().getFloat(RUSE_CHANCE_FORMULA_B, __FUNCTION__),
+			g_configManager().getFloat(RUSE_CHANCE_FORMULA_C, __FUNCTION__),
 			getTier()
 		);
 	}
@@ -731,9 +727,9 @@ public:
 			return 0;
 		}
 		return quadraticPoly(
-			g_configManager().getFloat(ONSLAUGHT_CHANCE_FORMULA_A),
-			g_configManager().getFloat(ONSLAUGHT_CHANCE_FORMULA_B),
-			g_configManager().getFloat(ONSLAUGHT_CHANCE_FORMULA_C),
+			g_configManager().getFloat(ONSLAUGHT_CHANCE_FORMULA_A, __FUNCTION__),
+			g_configManager().getFloat(ONSLAUGHT_CHANCE_FORMULA_B, __FUNCTION__),
+			g_configManager().getFloat(ONSLAUGHT_CHANCE_FORMULA_C, __FUNCTION__),
 			getTier()
 		);
 	}
@@ -743,9 +739,9 @@ public:
 			return 0;
 		}
 		return quadraticPoly(
-			g_configManager().getFloat(MOMENTUM_CHANCE_FORMULA_A),
-			g_configManager().getFloat(MOMENTUM_CHANCE_FORMULA_B),
-			g_configManager().getFloat(MOMENTUM_CHANCE_FORMULA_C),
+			g_configManager().getFloat(MOMENTUM_CHANCE_FORMULA_A, __FUNCTION__),
+			g_configManager().getFloat(MOMENTUM_CHANCE_FORMULA_B, __FUNCTION__),
+			g_configManager().getFloat(MOMENTUM_CHANCE_FORMULA_C, __FUNCTION__),
 			getTier()
 		);
 	}
@@ -755,9 +751,9 @@ public:
 			return 0;
 		}
 		return quadraticPoly(
-			g_configManager().getFloat(TRANSCENDANCE_CHANCE_FORMULA_A),
-			g_configManager().getFloat(TRANSCENDANCE_CHANCE_FORMULA_B),
-			g_configManager().getFloat(TRANSCENDANCE_CHANCE_FORMULA_C),
+			g_configManager().getFloat(TRANSCENDANCE_CHANCE_FORMULA_A, __FUNCTION__),
+			g_configManager().getFloat(TRANSCENDANCE_CHANCE_FORMULA_B, __FUNCTION__),
+			g_configManager().getFloat(TRANSCENDANCE_CHANCE_FORMULA_C, __FUNCTION__),
 			getTier()
 		);
 	}
@@ -768,7 +764,7 @@ public:
 		}
 
 		auto tier = getAttribute<uint8_t>(ItemAttribute_t::TIER);
-		if (tier > g_configManager().getNumber(FORGE_MAX_ITEM_TIER)) {
+		if (tier > g_configManager().getNumber(FORGE_MAX_ITEM_TIER, __FUNCTION__)) {
 			g_logger().error("{} - Item {} have a wrong tier {}", __FUNCTION__, getName(), tier);
 			return 0;
 		}
@@ -776,7 +772,7 @@ public:
 		return tier;
 	}
 	void setTier(uint8_t tier) {
-		auto configTier = g_configManager().getNumber(FORGE_MAX_ITEM_TIER);
+		auto configTier = g_configManager().getNumber(FORGE_MAX_ITEM_TIER, __FUNCTION__);
 		if (tier > configTier) {
 			g_logger().error("{} - It is not possible to set a tier higher than {}", __FUNCTION__, configTier);
 			return;

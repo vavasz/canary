@@ -1,4 +1,4 @@
-local callback = EventCallback("MonsterOnDropLootWealthDuplex")
+local callback = EventCallback()
 
 function callback.monsterOnDropLoot(monster, corpse)
 	local player = Player(corpse:getCorpseOwner())
@@ -59,7 +59,7 @@ function callback.monsterOnDropLoot(monster, corpse)
 
 	local lootTable = {}
 	for _ = 1, rolls do
-		lootTable = mType:generateLootRoll({ factor = factor, gut = false }, lootTable, player)
+		lootTable = mType:generateLootRoll({ factor = factor, gut = false }, lootTable)
 	end
 	corpse:addLoot(lootTable)
 

@@ -38,12 +38,9 @@ public:
 
 	// moveable
 	SpawnMonster(SpawnMonster &&rhs) noexcept :
-		spawnedMonsterMap(std::move(rhs.spawnedMonsterMap)),
 		spawnMonsterMap(std::move(rhs.spawnMonsterMap)),
-		centerPos(rhs.centerPos),
-		radius(rhs.radius),
-		interval(rhs.interval),
-		checkSpawnMonsterEvent(rhs.checkSpawnMonsterEvent) { }
+		spawnedMonsterMap(std::move(rhs.spawnedMonsterMap)),
+		checkSpawnMonsterEvent(rhs.checkSpawnMonsterEvent), centerPos(rhs.centerPos), radius(rhs.radius), interval(rhs.interval) { }
 
 	SpawnMonster &operator=(SpawnMonster &&rhs) noexcept {
 		if (this != &rhs) {
@@ -80,12 +77,15 @@ public:
 	void setMonsterVariant(const std::string &variant);
 
 private:
-	// The map of the spawned creatures
+	// map of the spawned creatures
 	std::map<uint32_t, std::shared_ptr<Monster>> spawnedMonsterMap;
-	// The map of creatures in the spawn
+
+	// map of creatures in the spawn
 	std::map<uint32_t, spawnBlock_t> spawnMonsterMap;
+
 	Position centerPos;
 	int32_t radius;
+
 	uint32_t interval = 30000;
 	uint32_t checkSpawnMonsterEvent = 0;
 

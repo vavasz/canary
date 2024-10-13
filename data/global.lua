@@ -176,7 +176,7 @@ function addStamina(playerId, ...)
 
 		local actualStamina = player:getStamina()
 
-		if actualStamina > 2340 and actualStamina < 2520 then
+		if actualStamina > 2400 and actualStamina < 2520 then
 			delay = configManager.getNumber(configKeys.STAMINA_GREEN_DELAY) * 60 * 1000 -- Stamina Green 12 min.
 		elseif actualStamina == 2520 then
 			player:sendTextMessage(
@@ -195,4 +195,16 @@ function addStamina(playerId, ...)
 		return true
 	end
 	return false
+end
+function capAll(str)
+    local newStr = ""; wordSeparate = string.gmatch(str, "([^%s]+)")
+    for v in wordSeparate do
+        v = v:gsub("^%l", string.upper)
+        if newStr ~= "" then
+            newStr = newStr.." "..v
+        else
+            newStr = v
+        end
+    end
+    return newStr
 end

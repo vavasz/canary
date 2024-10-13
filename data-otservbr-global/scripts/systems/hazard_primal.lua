@@ -12,11 +12,32 @@ local hazard = Hazard.new({
 
 hazard:register()
 
+-- Enhanced Gnomprona Gardens
+local enhancedHazard = Hazard.new({
+	name = "hazard.enhanced-gnomprona-gardens",
+	from = Position(120, 3800, 1), -- Adjust these positions as needed
+	to = Position(500, 4200, 2),   -- Ensure they cover the right area
+	maxLevel = 12,
+
+	crit = true,
+	dodge = true,
+	damageBoost = true,
+	defenseBoost = true,
+})
+
+enhancedHazard:register()
+
 -- Magma Bubble's fight is not affected by the hazard system
 local hazardZone = Zone.getByName("hazard.gnomprona-gardens")
 if not hazardZone then
 	return
 end
+
+local enhancedHazardZone = Zone.getByName("hazard.enhanced-gnomprona-gardens")
+if not enhancedHazardZone then
+	return
+end
+
 hazardZone:subtractArea({ x = 33633, y = 32915, z = 15 }, { x = 33649, y = 32928, z = 15 })
 hazardZone:subtractArea({ x = 33630, y = 32887, z = 15 }, { x = 33672, y = 32921, z = 15 })
 
@@ -64,7 +85,7 @@ local spawnFungosaurus = function(position)
 		if podItem then
 			local monster = Game.createMonster("Fungosaurus", position, false, true)
 			if monster then
-				monster:say("The primal pod explode and wild emerges from it.")
+				monster:say("The primal pod explodes and wild emerges from it.")
 			end
 			podItem:remove()
 		end
@@ -86,6 +107,12 @@ function spawnEvent.onSpawn(monster, position)
 	monster:registerEvent("PrimalHazardDeath")
 end
 spawnEvent:register()
+
+local enhancedSpawnEvent = ZoneEvent(enhancedHazardZone)
+function enhancedSpawnEvent.onSpawn(monster, position)
+	monster:registerEvent("EnhancedPrimalHazardDeath")
+end
+enhancedSpawnEvent:register()
 
 local deathEvent = CreatureEvent("PrimalHazardDeath")
 function deathEvent.onDeath(creature)
@@ -129,3 +156,47 @@ function deathEvent.onDeath(creature)
 end
 
 deathEvent:register()
+
+local enhancedDeathEvent = CreatureEvent("EnhancedPrimalHazardDeath")
+function enhancedDeathEvent.onDeath(creature)
+	if not configManager.getBoolean(configKeys.TOGGLE_HAZARDSYSTEM) then
+		return true
+	end
+
+	local monster = creature:getMonster()
+	if not creature or not monster or not monster:hazard() or not enhancedHazard:isInZone(monster:getPosition()) then
+		return true
+	end
+
+	-- don't spawn pods if the monster is a reward boss
+	if monster:getType():isRewardBoss() then
+		return true
+	end
+
+	local player, points = enhancedHazard:getHazardPlayerAndPoints(monster:getDamageMap())
+	if points < 1 then
+		return true
+	end
+
+	-- Pod
+	local chanceTo = math.random(1, 10000)
+	if chanceTo <= (points * configManager.getNumber(configKeys.HAZARD_PODS_DROP_MULTIPLIER)) then
+		local closestFreePosition = player:getClosestFreePosition(monster:getPosition(), 4, true)
+		createPrimalPod(closestFreePosition)
+		return true
+	end
+
+	-- Enhanced Plunder Patriarch
+	chanceTo = math.random(1, 100000)
+	if chanceTo <= (points * configManager.getNumber(configKeys.HAZARD_SPAWN_PLUNDER_MULTIPLIER)) then
+		local closestFreePosition = player:getClosestFreePosition(monster:getPosition(), 4, true)
+		local monster = Game.createMonster("Enhanced Plunder Patriarch", closestFreePosition.x == 0 and monster:getPosition() or closestFreePosition, false, true)
+		if monster then
+			monster:say("The Enhanced Plunder Patriarch rises from the ashes.")
+		end
+		return true
+	end
+	return true
+end
+
+enhancedDeathEvent:register()

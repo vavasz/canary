@@ -1,4 +1,4 @@
-local callback = EventCallback("MonsterOnSpawnBase")
+local callback = EventCallback()
 
 function callback.monsterOnSpawn(monster, position)
 	if not monster then

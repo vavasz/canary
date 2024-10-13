@@ -1,4 +1,4 @@
-local callback = EventCallback("MonsterOnDropLootBaseEvent")
+local callback = EventCallback()
 
 function Player:canReceiveLoot()
 	return self:getStamina() > 840
@@ -15,14 +15,14 @@ function callback.monsterOnDropLoot(monster, corpse)
 	end
 	local mType = monster:getType()
 	if not mType then
-		logger.warn("monsterOnDropLoot: monster '{}' has no type", monster:getName())
+		logger.warning("monsterOnDropLoot: monster has no type")
 		return
 	end
 
 	local charm = player and player:getCharmMonsterType(CHARM_GUT)
 	local gut = charm and charm:raceId() == mType:raceId()
 
-	local lootTable = mType:generateLootRoll({ factor = factor, gut = gut }, {}, player)
+	local lootTable = mType:generateLootRoll({ factor = factor, gut = gut }, {})
 	corpse:addLoot(lootTable)
 	for _, item in ipairs(lootTable) do
 		if item.gut then

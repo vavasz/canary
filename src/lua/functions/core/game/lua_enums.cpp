@@ -7,6 +7,8 @@
  * Website: https://docs.opentibiabr.com/
  */
 
+#include "pch.hpp"
+
 #include "lua/functions/core/game/lua_enums.hpp"
 
 #include "creatures/players/wheel/wheel_gems.hpp"
@@ -226,7 +228,6 @@ void LuaEnums::initOthersEnums(lua_State* L) {
 	registerEnum(L, SCREENSHOT_TYPE_PLAYERATTACKING);
 	registerEnum(L, SCREENSHOT_TYPE_TREASUREFOUND);
 	registerEnum(L, SCREENSHOT_TYPE_SKILLUP);
-	registerEnum(L, SCREENSHOT_TYPE_GIFTOFLIFE);
 }
 
 void LuaEnums::initAccountEnums(lua_State* L) {
@@ -1204,9 +1205,11 @@ void LuaEnums::initReloadTypeEnums(lua_State* L) {
 
 void LuaEnums::initCreaturesEventEnums(lua_State* L) {
 	// Monsters
-	for (auto value : magic_enum::enum_values<MonstersEvent_t>()) {
-		registerMagicEnum(L, value);
-	}
+	registerEnum(L, MONSTERS_EVENT_THINK);
+	registerEnum(L, MONSTERS_EVENT_APPEAR);
+	registerEnum(L, MONSTERS_EVENT_DISAPPEAR);
+	registerEnum(L, MONSTERS_EVENT_MOVE);
+	registerEnum(L, MONSTERS_EVENT_SAY);
 
 	// Npcs
 	registerEnum(L, NPCS_EVENT_THINK);

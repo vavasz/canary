@@ -1,4 +1,4 @@
-local callback = EventCallback("PlayerOnLookBaseEvent")
+local callback = EventCallback()
 
 function callback.playerOnLook(player, thing, position, distance)
 	local description = "You see "

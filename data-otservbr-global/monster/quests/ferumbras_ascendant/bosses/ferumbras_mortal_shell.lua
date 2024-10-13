@@ -85,6 +85,7 @@ monster.voices = {
 
 monster.loot = {
 	{ id = 822, chance = 800 }, -- lightning legs
+	{ id = 22865, chance = 100 }, -- lightning legs
 	{ id = 8041, chance = 400 }, -- greenwood coat
 	{ id = 3029, chance = 10000, maxCount = 10 }, -- small sapphire
 	{ id = 7416, chance = 800 }, -- bloody edge

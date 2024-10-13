@@ -1,4 +1,4 @@
-local callback = EventCallback("MonsterOnDropLootPrey")
+local callback = EventCallback()
 
 function callback.monsterOnDropLoot(monster, corpse)
 	local player = Player(corpse:getCorpseOwner())
@@ -42,7 +42,7 @@ function callback.monsterOnDropLoot(monster, corpse)
 		msgSuffix = msgSuffix .. " (active prey bonus)"
 	end
 
-	corpse:addLoot(mType:generateLootRoll({ factor = factor, gut = false }, {}, player))
+	corpse:addLoot(mType:generateLootRoll({ factor = factor, gut = false }, {}))
 	local existingSuffix = corpse:getAttribute(ITEM_ATTRIBUTE_LOOTMESSAGE_SUFFIX) or ""
 	corpse:setAttribute(ITEM_ATTRIBUTE_LOOTMESSAGE_SUFFIX, existingSuffix .. msgSuffix)
 end

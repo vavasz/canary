@@ -120,9 +120,7 @@ class MonsterType {
 		int32_t creatureDisappearEvent = -1;
 		int32_t creatureMoveEvent = -1;
 		int32_t creatureSayEvent = -1;
-		int32_t monsterAttackedByPlayerEvent = -1;
 		int32_t thinkEvent = -1;
-		int32_t spawnEvent = -1;
 		int32_t targetDistance = 1;
 		int32_t runAwayHealth = 0;
 		int32_t health = 100;
@@ -157,8 +155,6 @@ class MonsterType {
 		bool canWalkOnFire = true;
 		bool canWalkOnPoison = true;
 		bool isForgeCreature = true;
-		bool isPreyable = true;
-		bool isPreyExclusive = false;
 
 		MonstersEvent_t eventType = MONSTERS_EVENT_NONE;
 	};
@@ -190,15 +186,15 @@ public:
 	}
 
 	float getHealthMultiplier() const {
-		return isBoss() ? g_configManager().getFloat(RATE_BOSS_HEALTH) : g_configManager().getFloat(RATE_MONSTER_HEALTH);
+		return isBoss() ? g_configManager().getFloat(RATE_BOSS_HEALTH, __FUNCTION__) : g_configManager().getFloat(RATE_MONSTER_HEALTH, __FUNCTION__);
 	}
 
 	float getAttackMultiplier() const {
-		return isBoss() ? g_configManager().getFloat(RATE_BOSS_ATTACK) : g_configManager().getFloat(RATE_MONSTER_ATTACK);
+		return isBoss() ? g_configManager().getFloat(RATE_BOSS_ATTACK, __FUNCTION__) : g_configManager().getFloat(RATE_MONSTER_ATTACK, __FUNCTION__);
 	}
 
 	float getDefenseMultiplier() const {
-		return isBoss() ? g_configManager().getFloat(RATE_BOSS_DEFENSE) : g_configManager().getFloat(RATE_MONSTER_DEFENSE);
+		return isBoss() ? g_configManager().getFloat(RATE_BOSS_DEFENSE, __FUNCTION__) : g_configManager().getFloat(RATE_MONSTER_DEFENSE, __FUNCTION__);
 	}
 
 	bool isBoss() const {

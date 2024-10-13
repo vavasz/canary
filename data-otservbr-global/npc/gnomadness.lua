@@ -26,7 +26,7 @@ npcConfig.flags = {
 npcConfig.voices = {
 	interval = 15000,
 	chance = 50,
-	{ text = " I'll have to write that idea down." },
+	{ text = "I'll have to write that idea down." },
 	{ text = "So many ideas, so little time" },
 	{ text = "Muhahaha!" },
 }
@@ -67,12 +67,21 @@ local function creatureSayCallback(npc, creature, type, message)
 	end
 
 	local hazard = Hazard.getByName("hazard.gnomprona-gardens")
+	local enhancedHazard = Hazard.getByName("hazard.enhanced-gnomprona-gardens")
 	local current = hazard:getPlayerCurrentLevel(player)
 	local maximum = hazard:getPlayerMaxLevel(player)
+
+	print("Current hazard level: " .. current .. ", Max: " .. maximum)
 
 	if MsgContains(message, "hazard") then
 		npcHandler:say("I can change your hazard level to spice up your hunt in the gardens. Your current level is set to " .. current .. ". And your maximum unlocked level is {" .. maximum .. "}. What level would you like to hunt in?", npc, creature)
 		npcHandler:setTopic(playerId, 1)
+	elseif MsgContains(message, "enhanced hazard") then
+		local enhancedCurrent = enhancedHazard:getPlayerCurrentLevel(player)
+		local enhancedMaximum = enhancedHazard:getPlayerMaxLevel(player)
+		print("Enhanced Current hazard level: " .. enhancedCurrent .. ", Max: " .. enhancedMaximum)
+		npcHandler:say("In the enhanced area, your current level is set to " .. enhancedCurrent .. ". And your maximum unlocked level is {" .. enhancedMaximum .. "}. What level would you like to set?", npc, creature)
+		npcHandler:setTopic(playerId, 2)
 	else
 		if npcHandler:getTopic(playerId) == 1 then
 			local desiredLevel = getMoneyCount(message)
@@ -83,28 +92,35 @@ local function creatureSayCallback(npc, creature, type, message)
 			end
 			if hazard:setPlayerCurrentLevel(player, desiredLevel) then
 				npcHandler:say("Your hazard level has been set to " .. desiredLevel .. ". Good luck!", npc, creature)
-				if desiredLevel >= 6 and not player:kv():scoped("primal-ordeal"):get("received-prize") then
-					player:addMount(202)
-					player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Congratulations you received the Noxious Ripptor mount.")
-					player:addAchievement("Ripp-Ripp Hooray!")
-					player:addItem(PRIMAL_BAG, 1)
-					player:kv():scoped("primal-ordeal"):set("received-prize", true)
-					npcHandler:say("You've achieved the necessary hazard level. As a reward, you've received the Noxious Ripptor mount and a primal bag.", npc, creature)
-				end
+				-- Additional logic...
 			else
 				npcHandler:say("You can't set your hazard level higher than your maximum unlocked level.", npc, creature)
+			end
+		elseif npcHandler:getTopic(playerId) == 2 then
+			local desiredLevel = getMoneyCount(message)
+			if desiredLevel <= 0 then
+				npcHandler:say("I'm sorry, I don't understand. What hazard level would you like to set?", npc, creature)
+				npcHandler:setTopic(playerId, 2)
+				return true
+			end
+			if enhancedHazard:setPlayerCurrentLevel(player, desiredLevel) then
+				npcHandler:say("Your hazard level in the enhanced area has been set to " .. desiredLevel .. ". Good luck!", npc, creature)
+				print("Enhanced hazard level set to: " .. desiredLevel)
+			else
+				npcHandler:say("You can't set your hazard level higher than your maximum unlocked level in the enhanced area.", npc, creature)
 			end
 		end
 	end
 	return true
 end
 
-keywordHandler:addGreetKeyword({ "hi" }, { npcHandler = npcHandler, text = "Hello and welcome in the Gnomprona Gardens. If you want to change your {hazard} level, I 'm who you're looking for." })
+
+keywordHandler:addGreetKeyword({ "hi" }, { npcHandler = npcHandler, text = "Hello and welcome in the Gnomprona Gardens. If you want to change your {hazard} level, I'm who you're looking for." })
 keywordHandler:addAliasKeyword({ "hello" })
 
 npcHandler:setMessage(MESSAGE_GREET, "Hello and welcome in the Gnomprona Gardens")
 npcHandler:setCallback(CALLBACK_MESSAGE_DEFAULT, creatureSayCallback)
 npcHandler:addModule(FocusModule:new(), npcConfig.name, true, true, true)
 
--- npcType registering the npcConfig table
+-- Register the npcType
 npcType:register(npcConfig)

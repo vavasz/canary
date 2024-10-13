@@ -12,9 +12,9 @@ function bossDeath.onDeath(creature, corpse, killer, mostDamageKiller, lastHitUn
 	if monsterType and monsterType:isRewardBoss() then
 		if not corpse or not corpse.isContainer or not corpse:isContainer() then
 			if corpse.getId then
-				logger.debug("[bossDeath.onDeath] Boss {} has a corpse (id: {}, name: {}), but it is not a container.", creature:getName(), corpse:getId(), corpse:getName())
+				logger.warn("[bossDeath.onDeath] Corpse (id: {}, name: {}) for reward boss {} is not a container.", corpse:getId(), corpse:getName(), creature:getName())
 			else
-				logger.debug("[bossDeath.onDeath] Boss {} does not have a corpse or corpse not found at position {}", creature:getName(), creature:getPosition())
+				logger.warn("[bossDeath.onDeath] Error to get corpseId from boss: {}", creature:getName())
 			end
 			corpse = Game.createItem(ITEM_BAG, 1)
 		end
@@ -103,9 +103,9 @@ function bossDeath.onDeath(creature, corpse, killer, mostDamageKiller, lastHitUn
 				end
 
 				local playerLoot = creature:generateGemAtelierLoot()
-				playerLoot = monsterType:getBossReward(lootFactor, _ == 1, false, playerLoot, player)
+				playerLoot = monsterType:getBossReward(lootFactor, _ == 1, false, playerLoot)
 				for _ = 2, rolls do
-					playerLoot = monsterType:getBossReward(lootFactor, false, true, playerLoot, player)
+					playerLoot = monsterType:getBossReward(lootFactor, false, true, playerLoot)
 				end
 
 				-- Add droped items to reward container

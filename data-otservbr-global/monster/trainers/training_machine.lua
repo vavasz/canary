@@ -4,10 +4,16 @@ local monster = {}
 monster.description = "a training machine"
 monster.experience = 0
 monster.outfit = {
-	lookType = 1142,
+	lookType = 1725,
+	lookHead = 0,
+	lookBody = 114,
+	lookLegs = 94,
+	lookFeet = 94,
+	lookAddons = 3,
+	lookMount = 0,
 }
 
-monster.health = 1000000
+monster.health = 1000000000
 monster.maxHealth = monster.health
 monster.race = "venom"
 monster.corpse = 0
@@ -33,17 +39,6 @@ monster.flags = {
 monster.summons = {}
 
 monster.voices = {
-	interval = 5000,
-	chance = 10,
-	{ text = "I hope you are enjoying your sparring Sir or Ma'am!", yell = false },
-	{ text = "Threat level rising!", yell = false },
-	{ text = "Engaging in hostile interaction!", yell = false },
-	{ text = "Rrrtttarrrttarrrtta", yell = false },
-	{ text = "Please feel free to hit me Sir or Ma'am!", yell = false },
-	{ text = "klonk klonk klonk", yell = false },
-	{ text = "Self-diagnosis running.", yell = false },
-	{ text = "Battle simulation proceeding.", yell = false },
-	{ text = "Repairs initiated!", yell = false },
 }
 
 monster.loot = {}
@@ -55,7 +50,7 @@ monster.attacks = {
 monster.defenses = {
 	defense = 10,
 	armor = 7,
-	{ name = "combat", type = COMBAT_HEALING, chance = 15, interval = 2000, minDamage = 10000, maxDamage = 50000, effect = CONST_ME_MAGIC_BLUE },
+	{ name = "combat", type = COMBAT_HEALING, chance = 15, interval = 2000, minDamage = 1000000, maxDamage = 5000000, effect = CONST_ME_MAGIC_BLUE },
 }
 
 monster.elements = {

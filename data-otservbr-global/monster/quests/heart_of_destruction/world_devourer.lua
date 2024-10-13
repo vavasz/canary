@@ -21,7 +21,7 @@ monster.bosstiary = {
 monster.health = 25000
 monster.maxHealth = 25000
 monster.race = "venom"
-monster.corpse = 0
+monster.corpse = 23561
 monster.speed = 225
 monster.manaCost = 0
 
@@ -94,7 +94,7 @@ monster.loot = {
 	{ id = 3036, chance = 8000 }, -- violet gem
 	{ id = 23474, chance = 6000, unique = true }, -- tiara of power
 	{ id = 23477, chance = 6000, unique = true }, -- void boots
-	{ id = 23686, chance = 4000, unique = true }, -- devourer core
+	{ id = 23686, chance = 100, unique = true }, -- devourer core
 	{ id = 23684, chance = 2000, unique = true }, -- crackling egg
 }
 
@@ -106,7 +106,6 @@ monster.attacks = {
 	{ name = "combat", interval = 2000, chance = 20, type = COMBAT_ENERGYDAMAGE, minDamage = -600, maxDamage = -1200, length = 10, spread = 0, effect = CONST_ME_LOSEENERGY, target = false },
 	{ name = "combat", interval = 2000, chance = 20, type = COMBAT_LIFEDRAIN, radius = 8, effect = CONST_ME_MAGIC_RED, target = false },
 	{ name = "anomaly break", interval = 2000, chance = 40, target = false },
-	{ name = "devourer summon", interval = 2000, chance = 25, target = false },
 }
 
 monster.defenses = {
